@@ -75,7 +75,6 @@ def best_match(site_title: str, lookup):
         elif score > second_score:
             second_score = score
 
-    # Conservative fuzzy matching for small Scholar/site title differences.
     if best_key and best_score >= 0.93 and (best_score - second_score) >= 0.03:
         return lookup[best_key]
     return None
@@ -99,8 +98,57 @@ def add_style(text: str) -> str:
     return text.replace(marker, STYLE + marker, 1)
 
 
+def enforce_publication_status(text: str) -> str:
+    """Keep the Network-aware IV manuscript in Working papers without journal-status text."""
+    title_html = (
+        'Pal, S. &amp; <strong>Ghosh, D.</strong> '
+        '<em><a href="https://arxiv.org/abs/2604.24969">Network-aware IV Regression for Causal Node Discovery and Estimation.</a></em>'
+    )
+
+    # Remove any version of this entry from the under-review section, including an old status note.
+    text = re.sub(
+        r'\s*<li>Pal, S\. &amp; <strong>Ghosh, D\.</strong>\s*'
+        r'<em><a href="https://arxiv\.org/abs/2604\.24969">Network-aware IV Regression for Causal Node Discovery and Estimation\.</a></em>'
+        r'(?:\s*<(?:a|span) class="citation-count"[^>]*>.*?</(?:a|span)>)?'
+        r'.*?</li>',
+        '',
+        text,
+        count=1,
+        flags=re.DOTALL,
+    )
+
+    working_entry = f'      <li>{title_html}</li>\n'
+    if working_entry.strip() not in text:
+        marker = (
+            '      <li>† Shahid, I., Luo, S. &amp; <strong>Ghosh, D.</strong> '
+            '<em>Longitudinal Rank-Sum Testing for incomplete clinical trials.</em></li>\n'
+        )
+        if marker in text:
+            text = text.replace(marker, marker + working_entry, 1)
+        else:
+            raise RuntimeError("Could not locate Working papers insertion point")
+
+    # Keep section counts correct.
+    text = re.sub(
+        r'(<section class="pub-section pub-section-review">.*?<span class="pub-count">)\d+(</span>)',
+        r'\g<1>5\2',
+        text,
+        count=1,
+        flags=re.DOTALL,
+    )
+    text = re.sub(
+        r'(<section class="pub-section pub-section-working">.*?<span class="pub-count">)\d+(</span>)',
+        r'\g<1>11\2',
+        text,
+        count=1,
+        flags=re.DOTALL,
+    )
+    return text
+
+
 def update_html(text: str, lookup):
     text = remove_old_badges(text)
+    text = enforce_publication_status(text)
     text = add_style(text)
     matched = 0
     unmatched = []
@@ -113,7 +161,6 @@ def update_html(text: str, lookup):
         site_title = html.unescape(re.sub(r"<[^>]+>", "", inner)).strip()
         article = best_match(site_title, lookup)
         if not article:
-            # Only report plausible publication-title elements.
             if len(site_title) > 18:
                 unmatched.append(site_title)
             return match.group(0)
