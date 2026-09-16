@@ -28,7 +28,7 @@ a{color:var(--accent);}
 .hero-wrap:before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(12,107,125,.08);right:-120px;top:-150px;}
 .hero{
   display:grid;
-  grid-template-columns:1.45fr .85fr;
+  grid-template-columns:1.55fr .75fr;
   gap:2.8rem;
   align-items:center;
   position:relative;
