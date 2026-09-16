@@ -155,6 +155,22 @@ def add_quadratic_prediction_summary(text: str) -> str:
     return text.replace(old, new, 1)
 
 
+def enforce_news_navigation():
+    """Rename the site navigation item from Blog to News and point it to /news/."""
+    old = '<a href="/blog/index.html">Blog</a>'
+    new = '<a href="/news/index.html">News</a>'
+    changed = 0
+    for path in Path('.').rglob('*.html'):
+        if '.git' in path.parts:
+            continue
+        text = path.read_text(encoding='utf-8')
+        updated = text.replace(old, new)
+        if updated != text:
+            path.write_text(updated, encoding='utf-8')
+            changed += 1
+    return changed
+
+
 def update_html(text: str, lookup):
     text = remove_old_badges(text)
     text = enforce_publication_status(text)
@@ -209,9 +225,11 @@ def main():
     original = PUBLICATIONS_FILE.read_text(encoding="utf-8")
     updated, matched, unmatched = update_html(original, lookup)
     PUBLICATIONS_FILE.write_text(updated, encoding="utf-8")
+    nav_changed = enforce_news_navigation()
 
     print(f"Scholar articles returned: {len(articles)}")
     print(f"Website publications matched: {matched}")
+    print(f"HTML files updated for News navigation: {nav_changed}")
     if unmatched:
         print("Unmatched website titles (no badge added):")
         for title in sorted(set(unmatched)):
