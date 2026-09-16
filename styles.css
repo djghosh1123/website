@@ -16,13 +16,36 @@ html{scroll-behavior:smooth;}
 body{color:var(--ink);background:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;}
 a{color:var(--accent);}
 .navbar{box-shadow:0 2px 16px rgba(16,36,62,.08);backdrop-filter:blur(10px);}
-.hero-wrap{background:linear-gradient(135deg,#f6fbfc 0%,#edf5f8 52%,#fff7eb 100%);border:1px solid var(--line);border-radius:28px;padding:3.25rem 3rem;margin:1.4rem 0 2.6rem;position:relative;overflow:hidden;}
+.hero-wrap{
+  background:linear-gradient(135deg,#f6fbfc 0%,#edf5f8 52%,#fff7eb 100%);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:3.25rem 3rem;
+  margin:1.4rem 0 1.5rem;
+  position:relative;
+  overflow:hidden;
+}
 .hero-wrap:before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(12,107,125,.08);right:-120px;top:-150px;}
-.hero{display:grid;grid-template-columns:1.55fr .75fr;gap:3.2rem;align-items:center;position:relative;z-index:1;}
+.hero{
+  display:grid;
+  grid-template-columns:1.45fr .85fr;
+  gap:2.8rem;
+  align-items:center;
+  position:relative;
+  z-index:1;
+}
 .hero h1{font-family:Georgia,"Times New Roman",serif;font-size:3.55rem;line-height:1.02;letter-spacing:-.035em;margin-bottom:.55rem;color:var(--ink);}
 .hero .eyebrow{text-transform:uppercase;letter-spacing:.14em;font-weight:800;font-size:.78rem;color:var(--accent);}
 .hero .subtitle{font-size:1.23rem;line-height:1.58;color:#334960;max-width:760px;}
-.hero img{width:100%;max-width:315px;border-radius:22px;box-shadow:0 20px 54px rgba(16,36,62,.22);border:5px solid rgba(255,255,255,.95);}
+.hero img{
+  width:100%;
+  max-width:360px;
+  border-radius:14px;
+  box-shadow:0 20px 54px rgba(16,36,62,.22);
+  border:5px solid rgba(255,255,255,.95);
+  display:block;
+  margin:auto;
+}
 .btn-row{display:flex;flex-wrap:wrap;gap:.72rem;margin-top:1.35rem;align-items:center;}
 .pill{display:inline-block;padding:.68rem 1rem;border-radius:999px;border:1px solid #c6d2df;text-decoration:none;font-weight:700;background:#fff;color:var(--ink);transition:.18s ease;}
 .pill:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(16,36,62,.10);}
