@@ -105,7 +105,6 @@ def enforce_publication_status(text: str) -> str:
         '<em><a href="https://arxiv.org/abs/2604.24969">Network-aware IV Regression for Causal Node Discovery and Estimation.</a></em>'
     )
 
-    # Remove any version of this entry from the under-review section, including an old status note.
     text = re.sub(
         r'\s*<li>Pal, S\. &amp; <strong>Ghosh, D\.</strong>\s*'
         r'<em><a href="https://arxiv\.org/abs/2604\.24969">Network-aware IV Regression for Causal Node Discovery and Estimation\.</a></em>'
@@ -128,7 +127,6 @@ def enforce_publication_status(text: str) -> str:
         else:
             raise RuntimeError("Could not locate Working papers insertion point")
 
-    # Keep section counts correct.
     text = re.sub(
         r'(<section class="pub-section pub-section-review">.*?<span class="pub-count">)\d+(</span>)',
         r'\g<1>5\2',
@@ -146,9 +144,21 @@ def enforce_publication_status(text: str) -> str:
     return text
 
 
+def add_quadratic_prediction_summary(text: str) -> str:
+    old = '      <li>McElroy, T. S., <strong>Ghosh, D.</strong> &amp; Lahiri, S. <em><a href="https://link.springer.com/article/10.1007/s13171-023-00326-6">Quadratic Prediction of Time Series via Auto-Cumulants.</a></em> Sankhya A 86, 431–463 (2024).</li>'
+    new = '''      <li class="pub-expandable"><details><summary>McElroy, T. S., <strong>Ghosh, D.</strong> &amp; Lahiri, S. <em>Quadratic Prediction of Time Series via Auto-Cumulants.</em> Sankhya A 86, 431–463 (2024).</summary><div class="pub-expand-body">
+        <p><strong>Summary.</strong> This paper develops a general nonlinear forecasting framework based on quadratic predictors for stationary time series. The predictor extends the classical linear Yule–Walker equations by incorporating second-, third-, and fourth-order auto-cumulants, allowing nonlinear and non-Gaussian dependence to contribute directly to prediction.</p>
+        <p>The theory characterizes when a process is <em>second-order forecastable</em>—that is, when quadratic prediction can improve on the best linear forecast—and connects that condition to spectral and bispectral structure. Numerical studies show substantial prediction gains in nonlinear settings, while applications to U.S. unemployment and Wolfer sunspot data reduce mean-squared prediction error by 16.5% and 29.2%, respectively.</p>
+        <div class="pub-tags"><span class="pub-tag">Nonlinear time series</span><span class="pub-tag">Quadratic prediction</span><span class="pub-tag">Auto-cumulants</span><span class="pub-tag">Polyspectra</span><span class="pub-tag">Yule–Walker equations</span><span class="pub-tag">Forecasting</span></div>
+        <a class="pub-open-link" href="https://link.springer.com/article/10.1007/s13171-023-00326-6">Read the article →</a>
+      </div></details></li>'''
+    return text.replace(old, new, 1)
+
+
 def update_html(text: str, lookup):
     text = remove_old_badges(text)
     text = enforce_publication_status(text)
+    text = add_quadratic_prediction_summary(text)
     text = add_style(text)
     matched = 0
     unmatched = []
