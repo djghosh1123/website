@@ -1,0 +1,82 @@
+{
+  "last_updated": "2026-09-16",
+  "items": [
+    {
+      "id": "iisa-polyspectral-2026",
+      "date": "2026-12-01",
+      "date_display": "December 2026",
+      "category": "Upcoming talk",
+      "title": "Invited talk on polyspectral mean estimation at IISA 2026",
+      "summary": "I will present invited work on polyspectral mean estimation for general nonlinear processes at the International Indian Statistical Association conference. The work develops higher-order spectral tools for inference on nonlinear and non-Gaussian time series.",
+      "source_url": "/assets/Dhrubajyoti_Ghosh_CV.pdf",
+      "source_label": "CV",
+      "featured": true
+    },
+    {
+      "id": "icmla-undergrad-2026",
+      "date": "2026-07-24",
+      "date_display": "July 2026",
+      "category": "Student research",
+      "title": "First-Year Scholars misinformation project accepted at ICMLA 2026",
+      "summary": "Work with undergraduate researchers Calvin Ibenye, Aya-Vera Jimenez, and Samuel Jaeger examines why AI-generated and human-written misinformation differ in detectability. The project grew from Kennesaw State's First-Year Scholars program and will be presented at ICMLA 2026.",
+      "source_url": "https://arxiv.org/abs/2607.21967",
+      "source_label": "arXiv",
+      "featured": true
+    },
+    {
+      "id": "ivgls-cran-2026",
+      "date": "2026-06-24",
+      "date_display": "June 2026",
+      "category": "Software",
+      "title": "ivgls released on CRAN",
+      "summary": "The ivgls R package is now available on CRAN. Developed with Samhita Pal, the package implements network-aware instrumental-variable regression with graph-fused regularization, including procedures designed to accommodate invalid instruments.",
+      "source_url": "https://cran.r-project.org/package=ivgls",
+      "source_label": "CRAN",
+      "featured": false
+    },
+    {
+      "id": "pranay-cday-2026",
+      "date": "2026-04-20",
+      "date_display": "Spring 2026",
+      "category": "Student research",
+      "title": "Master's research on causal GNNs for Alzheimer's disease featured at KSU C-Day",
+      "summary": "Pranay Kumar Peddi presented our Causal-GCN project, which combines graph neural networks with causal adjustment to study model-based influence of brain regions in Alzheimer's disease. The work uses ADNI imaging data and later appeared in the DATA 2026 proceedings.",
+      "source_url": "https://campus.kennesaw.edu/colleges-departments/ccse/events/computing-showcase/sp26-cday-program.php",
+      "source_label": "Kennesaw State",
+      "featured": true
+    },
+    {
+      "id": "clinical-trials-review-2026",
+      "date": "2026-04-01",
+      "date_display": "April 2026",
+      "category": "Publication",
+      "title": "Review of statistical and machine-learning approaches to clinical-trial efficacy published",
+      "summary": "A review with Samhita Pal surveys classical, nonparametric, Bayesian, and machine-learning approaches to efficacy analysis in clinical trials, with attention to longitudinal outcomes, missing data, complex endpoint structures, and modern predictive methods.",
+      "source_url": "https://digitalcommons.kennesaw.edu/facpubs/7390/",
+      "source_label": "KSU Digital Commons",
+      "featured": false
+    },
+    {
+      "id": "distinct-medphys-2026",
+      "date": "2026-02-26",
+      "date_display": "February 2026",
+      "category": "Publication",
+      "title": "Demographic distribution matching study published in Medical Physics",
+      "summary": "Our Duke collaboration introduces DISTINCT, a distributional subsampling framework for aligning real-world and virtual phantom populations. The study connects statistical distribution matching with virtual imaging-trial design and lung-cancer screening applications.",
+      "source_url": "https://aapm.onlinelibrary.wiley.com/doi/10.1002/mp.70364",
+      "source_label": "Medical Physics",
+      "featured": false
+    },
+    {
+      "id": "bot-detection-ieee-2026",
+      "date": "2026-02-12",
+      "date_display": "February 2026",
+      "category": "Publication",
+      "title": "Bot-detection paper published in IEEE Transactions on Computational Social Systems",
+      "summary": "This interdisciplinary collaboration with William Boettcher and Rob Johnston combines temporal and semantic features from social-media behavior with machine learning and conformal prediction for uncertainty-aware bot detection.",
+      "source_url": "https://digitalcommons.kennesaw.edu/facpubs/7389/",
+      "source_label": "KSU Digital Commons",
+      "featured": false
+    }
+  ]
+}
