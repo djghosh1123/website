@@ -1,0 +1,44 @@
+name: Update research news
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Twice weekly: Monday and Thursday at 11:37 UTC.
+    - cron: "37 11 * * 1,4"
+
+permissions:
+  contents: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install CV parser
+        run: python -m pip install --quiet pypdf
+
+      - name: Discover and curate public news
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NEWS_MODEL: gpt-5.6-luna
+        run: python scripts/update_news.py
+
+      - name: Commit verified news updates
+        run: |
+          if git diff --quiet -- data/news.json; then
+            echo "No new verified news items."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news.json
+          git commit -m "Update research news"
+          git push
