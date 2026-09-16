@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>More | Dhrubajyoti Ghosh</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .more-page{background:linear-gradient(180deg,#f8fbfd 0,#fff 520px);}
+    .more-hero{position:relative;overflow:hidden;margin:1.4rem 0 2.25rem;padding:2.65rem 2.8rem;border:1px solid var(--line);border-radius:26px;background:linear-gradient(135deg,#f3fafb 0%,#eef4fa 58%,#fff7eb 100%);box-shadow:0 14px 40px rgba(16,36,62,.06);}
+    .more-hero:after{content:"MORE";position:absolute;right:-.35rem;bottom:-1.8rem;font-size:6.4rem;font-weight:900;letter-spacing:.05em;color:rgba(16,36,62,.035);pointer-events:none;}
+    .more-hero .section-kicker{margin:0 0 .35rem;}
+    .more-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:3.35rem;letter-spacing:-.035em;margin:.05rem 0 .7rem;color:var(--ink);}
+    .more-lead{max-width:850px;font-size:1.08rem;line-height:1.7;color:#42576d;margin:.2rem 0;position:relative;z-index:1;}
+    .more-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1.25rem 0 3rem;}
+    .more-card{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:1.45rem 1.4rem 1.5rem;background:#fff;box-shadow:0 7px 22px rgba(16,36,62,.045);transition:.18s ease;position:relative;overflow:hidden;}
+    .more-card:hover{transform:translateY(-4px);box-shadow:0 15px 30px rgba(16,36,62,.09);border-color:#c8d7e2;color:var(--ink);}
+    .more-card:before{content:"";position:absolute;left:0;top:0;right:0;height:5px;background:var(--accent);}
+    .more-card:nth-child(2):before{background:var(--accent2);}
+    .more-card:nth-child(3):before{background:var(--accent3);}
+    .more-card .more-icon{font-family:Georgia,"Times New Roman",serif;font-size:2.3rem;font-weight:800;color:rgba(16,36,62,.14);margin-bottom:.8rem;}
+    .more-card h2{margin:.15rem 0 .6rem;font-size:1.35rem;}
+    .more-card p{margin:0;color:#53677a;line-height:1.62;font-size:.94rem;}
+    .more-card .more-link{display:inline-block;margin-top:1rem;font-weight:800;color:var(--accent);font-size:.88rem;}
+    .more-philosophy{border-top:1px solid var(--line);padding-top:2rem;margin-top:.5rem;max-width:900px;}
+    .more-philosophy p{line-height:1.7;color:#4b5f73;}
+    @media(max-width:850px){.more-grid{grid-template-columns:1fr}.more-hero{padding:2rem 1.5rem}.more-hero h1{font-size:2.75rem}.more-hero:after{font-size:4.3rem}}
+  </style>
+</head>
+<body class="more-page">
+<nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="/index.html">Dhrubajyoti Ghosh</a><div class="site-links"><a href="/index.html">Home</a><a href="/research.html">Research</a><a href="/publications.html">Publications</a><a href="/lindt-lab.html">LINDT-C Lab</a><a href="/software.html">Software</a><a href="/teaching.html">Teaching</a><a href="/news/index.html">News</a><a href="/more/index.html">More</a><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a></div></div></nav>
+<main class="page-shell">
+  <section class="more-hero">
+    <div class="section-kicker">Notes · essays · resources</div>
+    <h1>More</h1>
+    <p class="more-lead">A space for research explainers, methodological notes, longer-form writing, tutorials, and useful resources that sit outside the formal publication record.</p>
+  </section>
+
+  <section class="more-grid">
+    <a class="more-card" href="/more/research-notes.html"><div class="more-icon">R</div><h2>Research Notes</h2><p>Accessible explanations of statistical ideas, methods under development, and the intuition behind current research in longitudinal inference, causal learning, time series, and biomedical data science.</p><span class="more-link">Browse research notes →</span></a>
+    <a class="more-card" href="/more/writing.html"><div class="more-icon">W</div><h2>Writing</h2><p>Longer-form pieces on statistics, AI and data science, research practice, mentoring, teaching, and occasional reflections on academic work.</p><span class="more-link">Browse writing →</span></a>
+    <a class="more-card" href="/more/resources.html"><div class="more-icon">T</div><h2>Tutorials &amp; Resources</h2><p>Short tutorials, code-oriented guides, methodological references, teaching materials, and practical resources for students and researchers.</p><span class="more-link">Browse resources →</span></a>
+  </section>
+
+  <section class="more-philosophy">
+    <div class="section-kicker">Purpose</div>
+    <h2>Beyond papers</h2>
+    <p>Formal papers are the primary record of my research, but they are not always the best format for explaining why a problem matters, how a method works, or what was learned while developing it. This section is intended for those more accessible and exploratory pieces while keeping the main research and publication pages focused.</p>
+  </section>
+</main>
+<footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
+</body>
+</html>
