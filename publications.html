@@ -20,6 +20,7 @@
     .pub-expandable .pub-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin:.9rem 0;}
     .pub-expandable .pub-tag{display:inline-block;padding:.28rem .58rem;border-radius:999px;background:var(--soft);border:1px solid var(--line);font-size:.77rem;font-weight:750;color:#53677a;}
     .pub-expandable .student-project{background:#fff6e8;border:1px solid #ecd8b6;border-radius:12px;padding:.8rem .95rem;margin:.9rem 0;color:#76511d;}
+    .pub-expandable .collab-project{background:#eef6fb;border:1px solid #c9dfea;border-radius:12px;padding:.8rem .95rem;margin:.9rem 0;color:#31546a;}
     .pub-expandable .pub-open-link{display:inline-block;margin-top:.15rem;font-weight:800;text-decoration:none;}
     @media(max-width:760px){.pub-expandable summary{padding-left:3.55rem;padding-right:3.5rem}.pub-expandable .pub-expand-body{padding-left:3.55rem}}
     @media(max-width:650px){.pub-expandable summary{padding-left:3.35rem}.pub-expandable .pub-expand-body{padding-left:1rem;padding-right:1rem}.pub-expandable summary::after{right:.8rem}}
@@ -66,7 +67,18 @@
           </div>
         </details>
       </li>
-      <li><strong>Ghosh, D.</strong>, Boettcher, W., Johnston, R. &amp; Lahiri, S. <em><a href="https://ieeexplore.ieee.org/abstract/document/11394813">Machine Learning Based Bot Detection on X With Temporal and Semantic Feature Integration.</a></em> IEEE Transactions on Computational Social Systems (2026).</li>
+      <li class="pub-expandable">
+        <details>
+          <summary><strong>Ghosh, D.</strong>, Boettcher, W., Johnston, R. &amp; Lahiri, S. <em>Machine Learning Based Bot Detection on X With Temporal and Semantic Feature Integration.</em> IEEE Transactions on Computational Social Systems (2026).</summary>
+          <div class="pub-expand-body">
+            <p><strong>Summary.</strong> This paper develops an interpretable machine-learning framework for distinguishing organic users from social-media bots using information extracted from users’ X/Twitter histories. Rather than relying only on profile metadata or opaque deep-learning representations, the method combines temporal behavior—such as periodicity, ARIMA-based dynamics, and periodogram structure—with semantic features including lexical diversity, hashtag use, word-frequency patterns, and sentiment.</p>
+            <p>Using verified organic and inorganic accounts, the study evaluates k-means clustering and support vector machines and finds that combining temporal and semantic features yields the strongest discrimination. The framework also adds split conformal prediction to quantify uncertainty, producing calibrated prediction sets alongside class labels; the conformal analysis reported approximately 94.7% test accuracy with an AUC of 0.978.</p>
+            <div class="collab-project"><strong>Interdisciplinary collaboration:</strong> This work was developed with William Boettcher and Rob Johnston at North Carolina State University, bringing political science and public-affairs perspectives together with statistical and machine-learning methodology.</div>
+            <div class="pub-tags"><span class="pub-tag">Bot detection</span><span class="pub-tag">Social media</span><span class="pub-tag">Temporal features</span><span class="pub-tag">Semantic features</span><span class="pub-tag">SVM</span><span class="pub-tag">Conformal prediction</span></div>
+            <a class="pub-open-link" href="https://ieeexplore.ieee.org/abstract/document/11394813">Read the IEEE paper →</a>
+          </div>
+        </details>
+      </li>
       <li><strong>Ghosh, D.</strong>, McElroy, T. &amp; Lahiri, S. <em><a href="https://arxiv.org/abs/2410.15187">Polyspectral Mean Estimation of General Nonlinear Processes.</a></em> Bernoulli (2026), in press.</li>
       <li><strong>Ghosh, D.</strong> &amp; Pal, S. <em><a href="https://nejsds.nestat.org/journal/NEJSDS/article/113/read">Efficacy Analysis in Clinical Trials: A Comprehensive Review of Statistical and Machine Learning Approaches.</a></em> The New England Journal of Statistics in Data Science, 1–23 (2026).</li>
       <li><strong>Ghosh, D.</strong>, Tushar, F., Dahal, L., Vancoillie, L., Lafata, K. J., Samei, E., Lo, J. Y. &amp; Luo, S. <em><a href="https://aapm.onlinelibrary.wiley.com/doi/abs/10.1002/mp.70364">Demographic distribution matching between real-world and virtual phantom population.</a></em> Medical Physics 53, e70364 (2026).</li>
