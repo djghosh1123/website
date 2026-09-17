@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Poetry | Dhrubajyoti Ghosh</title>
   <link rel="stylesheet" href="../styles.css" />
   <style>
-    .poetry-page{background:linear-gradient(180deg,#fffaf4 0,#fff 500px);}
+    .poetry-page{background:linear-gradient(180deg,#fffaf4 0,#fff 540px);}
     .poetry-hero{margin:1.4rem 0 2.1rem;padding:2.4rem 2.55rem;border:1px solid #eadfce;border-radius:24px;background:linear-gradient(135deg,#fff8ee,#f9f6f2 58%,#fff);box-shadow:0 12px 34px rgba(16,36,62,.05);}
     .poetry-hero .section-kicker{margin:0 0 .35rem}.poetry-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:3rem;margin:.05rem 0 .7rem;color:var(--ink)}.poetry-hero p{max-width:820px;line-height:1.72;color:#5a5147;font-size:1.04rem}
-    .archive-note{max-width:880px;border:1px solid #eadfce;border-radius:20px;background:#fffdfa;box-shadow:0 7px 22px rgba(16,36,62,.04);padding:1.65rem 1.7rem;color:#4c5560;line-height:1.75}.archive-note h2{font-family:Georgia,"Times New Roman",serif;font-size:1.55rem;margin:.05rem 0 .65rem;color:var(--ink)}
+    .poem-list{display:grid;gap:1rem;max-width:920px}.poem-card{border:1px solid #eadfce;border-radius:20px;background:#fffdfa;box-shadow:0 7px 22px rgba(16,36,62,.04);overflow:hidden}.poem-card summary{list-style:none;cursor:pointer;padding:1.35rem 1.55rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}.poem-card summary::-webkit-details-marker{display:none}.poem-card summary:after{content:"+";font-size:1.45rem;color:#9b7f5f}.poem-card[open] summary:after{content:"−"}.poem-title{font-family:Georgia,"Times New Roman",serif;font-size:1.45rem;font-weight:700;color:var(--ink)}.poem-lang{display:block;margin-top:.2rem;font-size:.78rem;color:#8a745d;font-family:system-ui,-apple-system,sans-serif;font-weight:600;letter-spacing:.03em}.poem-body{border-top:1px solid #eee3d5;padding:1.5rem 1.65rem 1.7rem}.poem-text{font-family:Georgia,"Times New Roman",serif;font-size:1.08rem;line-height:1.9;color:#313d49;white-space:pre-line;margin:0}.poem-text.bn{font-family:"Noto Serif Bengali","Nirmala UI","Vrinda",Georgia,serif;font-size:1.13rem;line-height:2.05}.archive-note{margin:2rem 0 0;max-width:880px;color:var(--muted);font-size:.86rem;line-height:1.6;border-top:1px solid var(--line);padding-top:1rem}@media(max-width:700px){.poetry-hero{padding:2rem 1.4rem}.poetry-hero h1{font-size:2.55rem}.poem-card summary{padding:1.15rem 1.2rem}.poem-body{padding:1.3rem 1.2rem}.poem-title{font-size:1.3rem}}
   </style>
 </head>
 <body class="poetry-page">
@@ -18,13 +18,114 @@
   <section class="poetry-hero">
     <div class="section-kicker">More · Poetry</div>
     <h1>Poetry</h1>
-    <p>Selected poems from my own writing archive, primarily in Bengali. The original wording and titles are preserved rather than reconstructed or generated.</p>
+    <p>Selected poems from my earlier writing archive. The original wording, punctuation, and language are preserved from the source material.</p>
   </section>
 
-  <section class="archive-note">
-    <h2>Poetry archive</h2>
-    <p>Poems from my earlier writing collection are being migrated here selectively. Only pieces verified against the original archive will be included.</p>
+  <section class="poem-list">
+    <details class="poem-card" open>
+      <summary><span><span class="poem-title">প্রলয়ের প্রহর</span><span class="poem-lang">বাংলা</span></span></summary>
+      <div class="poem-body"><p class="poem-text bn">আলোকমালার দম্ভতাজে,
+বিশ্ব কাঁদে দ্বন্দ্ব বাজে;
+কান্নাভরা মাতৃক্রোড়ে,
+ভীষণ অভিশাপ।
+
+কিন্নর ধ্বনি প্রভাত কালে,
+বাজায় এ কোন প্রলয় তালে;
+টুকরো রবির রক্ত আভায়,
+আঁধার নেমে আসে।
+
+পুরাতনের করুণ বীনা,
+ব্যর্থ যে আজ বাদক বিনা;
+মনের কোনের অন্ধকূপে,
+হারায় প্রাণের বাতি।
+
+দিনের কোলে রাতের ছায়া,
+এ কোন জীবন, এ কোন মায়া;
+স্বপ্ন শেষে উঠবো কবে,
+আবার দিনের প্রথম হবে।</p></div>
+    </details>
+
+    <details class="poem-card">
+      <summary><span><span class="poem-title">Where Dreams Die ...</span><span class="poem-lang">English</span></span></summary>
+      <div class="poem-body"><p class="poem-text">Eternal sunshine of pensive minds,
+And Gloomy cast, of prosthetic heart,
+The drunken eyes wander alone,
+In the field of broken wanderlust.
+
+Were you right, or were you wrong,
+Who knows? coz you went along;
+And went along, and went along;
+Till dreams became, a thing of past.
+
+Today as you lie, in the dusky bed,
+Comforted by your wealth and grace;
+You can't help but, envision the dream,
+That lies helpless, in your lonesome past.
+
+Shards of passion, lies scattered around,
+All those what-ifs, chase you like hound;
+The Schrodinger’s Cat, remained undead,
+And followed you, to your final bed.</p></div>
+    </details>
+
+    <details class="poem-card">
+      <summary><span><span class="poem-title">ভালোবাসার ঋণ</span><span class="poem-lang">বাংলা</span></span></summary>
+      <div class="poem-body"><p class="poem-text bn">আকাশ ভরা সূর্য তারার লুকোচুরি খেলা,
+ওগো তুমি হারিয়ে যাওয়া ক্লান্ত গোধূলির বেলা।
+কোথায় তোমার মুখের হাসি, কাজল রাঙা আঁখি,
+অন্ধ রাতের আলোক তুমি, সুসংবাদের পাখি।
+
+ছন্দমধুর পদক্ষেপে প্রথম আবির্ভাবে,
+ফুটিয়েছিলে সূর্যমুখী ভোরের ভৈরবে।
+আঁকাবাঁকা নদীর পাশে পা ছড়িয়ে বসে,
+স্নিগ্ধ সুরে মাতিয়েছিলে ধ্রুপদ রাগারসে।
+
+মনের বাঁধন ডিঙিয়ে তোর নিত্য আসা যাওয়া,
+উদ্যানে মোর খেলেছিল দখিন দেশের হাওয়া।
+বিজন নদীর স্তব্ধ তীরে হাত মিলিয়ে বসে,
+হারিয়েছিনু তোমার চোখে চন্দ্র-আলোক-পাশে।
+
+বীররসের সূর্যমামা ঘুচিয়ে নিকষ রাতি,
+জ্বালিয়েছিল আপন সুরে ভালোবাসার বাতি।
+শীতের রোদে তোমার হাতের উষ্ণ ছোঁয়া লেগে,
+কেঁপেছিল মন অবাক হরষে আর্দ্র ভাবাবেগে।
+
+সময়ের স্রোতে সেই উদ্যান আজ হায় মৃতপ্রায়,
+কৃষ্ণকে ছাড়ি রাধা, কেন চলে গেল যমুনায়।
+বিরস বদনে আজিকে যে তাই স্মৃতির কুহক শুনি,
+কুহকিনী আজ বিদায় নিয়েছে, করে রেখে মোরে ঋণী।।</p></div>
+    </details>
+
+    <details class="poem-card">
+      <summary><span><span class="poem-title">A Closed Book</span><span class="poem-lang">English</span></span></summary>
+      <div class="poem-body"><p class="poem-text">A dusky old book lies in a shelf,
+Forgotten, alone, comforted by her self,
+Birth of flowers, and death of leaves,
+She watches the world, like an elf.
+
+One day, a surprise guest,
+A gust of wind, loud as a fest,
+Turns the first page, in wonder and awe
+Awoke the book, from her age-old rest.
+
+Drinking the nature with a spile,
+Hypnotized by her beauty facile,
+The book wanders, with eyes wide shut
+Pure, ignorant, like an infant's smile.
+
+Leaves turn gold, the day grows old,
+Pages reveal, stories untold;
+Polluted by her darkened tales,
+Nature withers, the air turns cold.
+
+Lost in a labyrinth, the final encore,
+The book searches for the days before;
+Forgotten, alone, in the cold dark shelf,
+The book wants to close, forevermore.</p></div>
+    </details>
   </section>
+
+  <div class="archive-note">These pieces are reproduced from the original writing archive rather than rewritten for the current site. Additional poems can be added as they are verified.</div>
 </main>
 <footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
 </body>
