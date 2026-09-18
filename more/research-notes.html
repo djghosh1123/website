@@ -7,21 +7,106 @@
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="/nav-more.css" />
   <style>
-    .note-hero{margin:1.4rem 0 2rem;padding:2.35rem 2.5rem;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#f3fafb,#eef4fa 60%,#fff);}
-    .note-hero .section-kicker{margin:0 0 .35rem}.note-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:3rem;margin:.05rem 0 .65rem}.note-hero p{max-width:850px;line-height:1.7;color:#4b5f73;font-size:1.05rem}
-    .note-list{display:grid;gap:1rem}.note-card{border:1px solid var(--line);border-radius:18px;padding:1.3rem 1.35rem;background:#fff;box-shadow:0 6px 20px rgba(16,36,62,.04)}.note-card .small{margin-bottom:.4rem}.note-card h2{margin:.15rem 0 .55rem;font-size:1.3rem}.note-card p{margin:0;color:#526579;line-height:1.65}.note-coming{border-style:dashed;background:#fbfcfe}.note-feature{display:block;text-decoration:none;color:inherit;background:linear-gradient(135deg,#eaf6f7,#eef4fa 56%,#fff5e6);border-color:#cfe3e8;transition:.18s ease;position:relative;overflow:hidden}.note-feature:after{content:"OPEN NOTE →";position:absolute;right:1.2rem;top:1.15rem;font-size:.68rem;font-weight:900;letter-spacing:.1em;color:#0c6b7d}.note-feature:hover{transform:translateY(-3px);box-shadow:0 13px 28px rgba(16,36,62,.10);border-color:#a9ccd4}.note-feature h2{padding-right:6.7rem}.note-feature .small{color:#0c6b7d;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem}
+    body{background:linear-gradient(180deg,#f8fbfd 0,#fff 520px)}
+    .note-hero{position:relative;overflow:hidden;margin:1.4rem 0 1.7rem;padding:2.55rem 2.65rem;border:1px solid var(--line);border-radius:26px;background:linear-gradient(135deg,#f3fafb,#eef4fa 58%,#fff6e8);box-shadow:0 14px 40px rgba(16,36,62,.06)}
+    .note-hero:after{content:"NOTES";position:absolute;right:-.6rem;bottom:-2rem;font-size:7rem;font-weight:900;color:rgba(16,36,62,.035)}
+    .note-hero .section-kicker{margin:0 0 .35rem}
+    .note-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:3.25rem;margin:.05rem 0 .65rem;color:#10243e}
+    .note-hero p{max-width:850px;line-height:1.7;color:#4b5f73;font-size:1.05rem;margin:0}
+    .note-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.05rem;margin-bottom:2.8rem}
+    .note-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:22px;background:#fff;overflow:hidden;box-shadow:0 8px 24px rgba(16,36,62,.05);transition:.18s ease;min-height:430px}
+    .note-card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(16,36,62,.1);border-color:#bfd0dc}
+    .note-visual{height:205px;position:relative;overflow:hidden}
+    .note-body{padding:1.2rem 1.2rem 1.25rem;display:flex;flex-direction:column;flex:1}
+    .note-kicker{font-size:.68rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.42rem}
+    .note-card h2{margin:.1rem 0 .55rem;font-size:1.28rem;line-height:1.25;color:#10243e}
+    .note-card p{margin:0;color:#526579;line-height:1.6;font-size:.94rem}
+    .note-open{margin-top:auto;padding-top:1rem;font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .lrst .note-visual{background:linear-gradient(135deg,#e7f4f6,#eef4fa)}
+    .lrst .note-kicker,.lrst .note-open{color:#0c6b7d}
+    .hos .note-visual{background:linear-gradient(135deg,#f2eaf6,#eef4fa)}
+    .hos .note-kicker,.hos .note-open{color:#7a4a8f}
+    .causal .note-visual{background:linear-gradient(135deg,#e8f5ef,#fff4e2)}
+    .causal .note-kicker,.causal .note-open{color:#2f6b4f}
+    .lrst-grid{position:absolute;inset:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .lrst-grid span{border-radius:9px;background:#fff;border:1px solid rgba(16,36,62,.06)}
+    .lrst-grid span:nth-child(2n){background:#e1eef9}.lrst-grid span:nth-child(3n){background:#fff0d8}.lrst-grid span:nth-child(5n){background:#e3f3ed}
+    .lrst-pill{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);background:#0c6b7d;color:#fff;padding:.5rem .75rem;border-radius:999px;font-size:.72rem;font-weight:900;white-space:nowrap;box-shadow:0 5px 14px rgba(12,107,125,.2)}
+    .wave{position:absolute;left:18px;right:18px;height:4px;border-radius:999px;background:#7a4a8f;transform-origin:left center}
+    .w1{top:65px;transform:rotate(7deg)}.w2{top:96px;transform:rotate(-8deg);background:#3867a6}.w3{top:127px;transform:rotate(11deg);background:#c6842b}
+    .freq-dot{position:absolute;width:18px;height:18px;border-radius:50%;background:#7a4a8f;box-shadow:0 0 0 7px rgba(122,74,143,.12)}
+    .d1{left:19%;top:50px}.d2{left:48%;top:100px;background:#3867a6}.d3{right:18%;top:66px;background:#c6842b}
+    .hos-label{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:.74rem;font-weight:900;color:#10243e;background:#fff;padding:.45rem .7rem;border-radius:999px;border:1px solid #ddd}
+    .dag-node{position:absolute;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;z-index:2;box-shadow:0 6px 14px rgba(16,36,62,.12)}
+    .x{left:46px;top:74px;background:#3867a6}.z{left:50%;top:34px;transform:translateX(-50%);background:#7a4a8f}.y{right:46px;top:74px;background:#2f6b4f}
+    .dag-line{position:absolute;height:4px;background:#7e8d9d;transform-origin:left center;z-index:1}.l1{left:95px;top:102px;width:105px;transform:rotate(-23deg)}.l2{left:50%;top:72px;width:108px;transform:rotate(23deg)}
+    .dag-line:after{content:"";position:absolute;right:-1px;top:-4px;border-left:9px solid #7e8d9d;border-top:6px solid transparent;border-bottom:6px solid transparent}
+    .causal-tag{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);background:#fff;padding:.45rem .72rem;border-radius:999px;font-size:.72rem;font-weight:900;color:#2f6b4f;border:1px solid #d8e7df;white-space:nowrap}
+    .browse-note{border-top:1px solid var(--line);padding-top:1.5rem;margin-top:.2rem;color:#5b6d7d;font-size:.92rem}
+    @media(max-width:950px){.note-grid{grid-template-columns:1fr}.note-card{min-height:auto}.note-visual{height:190px}}
+    @media(max-width:650px){.note-hero{padding:1.8rem 1.35rem}.note-hero h1{font-size:2.55rem}}
   </style>
 </head>
 <body>
 <nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="/index.html">Dhrubajyoti Ghosh</a><div class="site-links"><a href="/index.html">Home</a><a href="/research.html">Research</a><a href="/publications.html">Publications</a><a href="/lindt-lab.html">LINDT-C Lab</a><a href="/software.html">Software</a><a href="/teaching.html">Teaching</a><a href="/news/index.html">News</a><div class="nav-more"><button class="nav-more-trigger" type="button" aria-label="More" aria-haspopup="true">⋯</button><div class="nav-more-menu"><a href="/more/research-notes.html">Research Notes</a><a href="/more/resources.html">Tutorials &amp; Resources</a><a href="/more/poetry.html">Poetry</a></div></div><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a></div></div></nav>
+
 <main class="page-shell">
-  <section class="note-hero"><div class="section-kicker">More · Research Notes</div><h1>Research Notes</h1><p>Short, readable explanations of methods, research questions, and ideas that are easier to discuss outside the structure of a formal paper.</p></section>
-  <section class="note-list">
-    <a class="note-card note-feature" href="/more/lrst.html"><div class="small">Visual research note · LRST</div><h2>What is the Longitudinal Rank-Sum Test?</h2><p>A colorful, visual introduction to the LRST idea: why a global rank-based test is useful, how the ranking intuition works, when LRST is appropriate, and how to use the R package.</p></a>
-    <a class="note-card note-feature" href="/more/why-higher-order-spectra.html"><div class="small">Visual research note · Time series</div><h2>Why higher-order spectra?</h2><p>Why ordinary spectra can miss nonlinear and non-Gaussian structure, how bispectra and polyspectra recover richer dependence, and why polyspectral means are useful summaries.</p></a>
-    <a class="note-card note-feature" href="/more/causal-discovery-limits.html"><div class="small">Visual research note · Causal discovery</div><h2>What causal discovery can—and cannot—tell us</h2><p>An intuitive guide to what structure-learning algorithms identify, why equivalence classes matter, how latent confounding changes the graph, and why partial orientations should be taken seriously.</p></a>
+  <section class="note-hero">
+    <div class="section-kicker">More · Research Notes</div>
+    <h1>Research Notes</h1>
+    <p>Short, visual explanations of the ideas behind my work—designed to be easier to read than a formal methods paper, but still technically meaningful.</p>
   </section>
+
+  <section class="note-grid">
+    <a class="note-card lrst" href="/more/lrst.html">
+      <div class="note-visual">
+        <div class="lrst-grid">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="lrst-pill">MANY MEASUREMENTS → ONE GLOBAL TEST</div>
+      </div>
+      <div class="note-body">
+        <div class="note-kicker">Visual research note · LRST</div>
+        <h2>What is the Longitudinal Rank-Sum Test?</h2>
+        <p>Why a global rank-based test is useful, how the ranking intuition works, when LRST is appropriate, and how the R package fits into the workflow.</p>
+        <div class="note-open">Open note →</div>
+      </div>
+    </a>
+
+    <a class="note-card hos" href="/more/why-higher-order-spectra.html">
+      <div class="note-visual">
+        <div class="wave w1"></div><div class="wave w2"></div><div class="wave w3"></div>
+        <div class="freq-dot d1"></div><div class="freq-dot d2"></div><div class="freq-dot d3"></div>
+        <div class="hos-label">SPECTRUM → BISPECTRUM → POLYSPECTRUM</div>
+      </div>
+      <div class="note-body">
+        <div class="note-kicker">Visual research note · Time series</div>
+        <h2>Why higher-order spectra?</h2>
+        <p>Why ordinary spectra can miss nonlinear and non-Gaussian structure, how bispectra and polyspectra reveal richer dependence, and why polyspectral means are useful summaries.</p>
+        <div class="note-open">Open note →</div>
+      </div>
+    </a>
+
+    <a class="note-card causal" href="/more/causal-discovery-limits.html">
+      <div class="note-visual">
+        <div class="dag-line l1"></div><div class="dag-line l2"></div>
+        <div class="dag-node x">X</div><div class="dag-node z">Z</div><div class="dag-node y">Y</div>
+        <div class="causal-tag">DATA + ASSUMPTIONS → PARTIAL GRAPH</div>
+      </div>
+      <div class="note-body">
+        <div class="note-kicker">Visual research note · Causal discovery</div>
+        <h2>What causal discovery can—and cannot—tell us</h2>
+        <p>What structure-learning algorithms identify, why equivalence classes matter, how latent confounding changes the graph, and why unresolved endpoints matter.</p>
+        <div class="note-open">Open note →</div>
+      </div>
+    </a>
+  </section>
+
+  <p class="browse-note">These notes are intentionally visual and conceptual. For code, implementation details, and longer walkthroughs, see <a href="/more/resources.html">Tutorials &amp; Resources</a>.</p>
 </main>
+
 <footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
 </body>
 </html>
