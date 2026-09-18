@@ -37,12 +37,16 @@
     .feature-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.75rem}
     .feature-pill{padding:.34rem .55rem;border-radius:999px;font-size:.76rem;font-weight:850;color:#fff}
     .gold{background:#c6842b;color:#10243e}.purple{background:#7a4a8f}.teal{background:#0c6b7d}.green{background:#2f6b4f}.rose{background:#8b3f55}.blue{background:#3867a6}
-    .network-panel{display:grid;grid-template-columns:1fr .95fr;gap:1rem;align-items:center}
-    .network-graphic{position:relative;min-height:280px;border-radius:18px;background:radial-gradient(circle at center,#f7f1fa 0,#eef4fa 55%,#fff 100%);border:1px solid #dde5ee;overflow:hidden}
-    .n{position:absolute;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;box-shadow:0 5px 14px rgba(16,36,62,.12);z-index:2}
-    .n.big{width:66px;height:66px;font-size:1.1rem}.n.a{left:44%;top:35%;background:#7a4a8f}.n.b{left:18%;top:15%;background:#0c6b7d}.n.c{right:16%;top:15%;background:#3867a6}.n.d{left:14%;bottom:17%;background:#c6842b;color:#10243e}.n.e{right:13%;bottom:18%;background:#2f6b4f}.n.f{left:45%;bottom:8%;background:#8b3f55}
-    .line{position:absolute;height:3px;background:#92a1b1;transform-origin:left center;z-index:1}
-    .line.l1{left:24%;top:29%;width:29%;transform:rotate(22deg)}.line.l2{left:51%;top:31%;width:29%;transform:rotate(-21deg)}.line.l3{left:24%;top:66%;width:28%;transform:rotate(-24deg)}.line.l4{left:52%;top:64%;width:28%;transform:rotate(23deg)}.line.l5{left:49%;top:55%;width:28%;transform:rotate(92deg)}
+    .network-paper-panel{display:grid;grid-template-columns:1.18fr .82fr;gap:1.25rem;align-items:start;margin-top:1rem}
+    .paper-figure{margin:0;background:#fbfcfe;border:1px solid var(--line);border-radius:20px;padding:1rem;box-shadow:0 8px 24px rgba(16,36,62,.04)}
+    .paper-figure svg{display:block;width:100%;height:auto;border-radius:14px;background:#f3f0eb}
+    .paper-figure figcaption{margin-top:.85rem;font-size:.9rem;line-height:1.55;color:#5d6d7e}
+    .network-paper-text p{color:#475c70;line-height:1.72;margin:.15rem 0 1rem}
+    .network-key-points{display:grid;gap:.7rem;margin-top:.8rem}
+    .mini-point{background:linear-gradient(135deg,#f8fbfd,#fff);border:1px solid var(--line);border-radius:15px;padding:.8rem .9rem}
+    .mini-point span{display:block;font-size:.72rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#7a4a8f;margin-bottom:.2rem}
+    .mini-point p{margin:0;font-size:.93rem;line-height:1.5;color:#526578}
+    .network-note{margin-top:.8rem;padding:.75rem .9rem;border-radius:12px;background:#f2eaf6;border:1px solid #dfd0e7;color:#4b5260;font-size:.9rem;line-height:1.5}
     .result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1rem}
     .result{border-radius:16px;padding:1rem;border:1px solid var(--line);background:#fbfcfe}
     .result strong{display:block;font-size:1.45rem;color:#10243e;margin-bottom:.3rem}
@@ -59,7 +63,7 @@
     .publication h3{margin:.1rem 0 .35rem;color:#10243e}.publication p{margin:0;color:#5a6a7b;line-height:1.5}
     .btn{display:inline-block;text-decoration:none;padding:.7rem .95rem;border-radius:999px;font-weight:850;background:#10243e;color:#fff;white-space:nowrap}
     .note{font-size:.82rem;color:#687787;margin-top:.9rem}
-    @media(max-width:900px){.split,.model-grid,.network-panel,.robust-grid{grid-template-columns:1fr}.contrast{grid-template-columns:1fr}.plus{transform:rotate(90deg)}.result-grid{grid-template-columns:1fr}.publication{grid-template-columns:1fr}}
+    @media(max-width:900px){.split,.model-grid,.network-paper-panel,.robust-grid{grid-template-columns:1fr}.contrast{grid-template-columns:1fr}.plus{transform:rotate(90deg)}.result-grid{grid-template-columns:1fr}.publication{grid-template-columns:1fr}}
     @media(max-width:620px){.story-shell{padding-left:1rem;padding-right:1rem}.story-hero{padding:1.8rem 1.3rem}.story-hero h1{font-size:2.2rem}}
   </style>
 </head>
@@ -114,15 +118,114 @@
 
   <section class="section-card">
     <div class="section-label">Why the network matters</div>
-    <h2>It is not only what people are tweeting — it is also who is driving the conversation</h2>
-    <div class="network-panel">
-      <div class="network-graphic" aria-label="Stylized retweet network">
-        <div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div><div class="line l5"></div>
-        <div class="n big a">A</div><div class="n b">B</div><div class="n c">C</div><div class="n d">D</div><div class="n e">E</div><div class="n f">F</div>
-      </div>
-      <div>
-        <p>The paper constructs directed retweet networks and derives features from influential users. In particular, it uses harmonic centrality and retweet-based quantities for leading influencers.</p>
-        <p>The motivation is simple: two campaigns can generate similar tweet counts while having very different network structure. A message repeatedly amplified by central users may represent a different campaign dynamic from the same number of isolated posts.</p>
+    <h2>It is not only what people are tweeting — it is also how influence spreads through the network</h2>
+    <div class="network-paper-panel">
+      <figure class="paper-figure">
+        <svg viewBox="0 0 900 620" role="img" aria-label="Network growth in the Ireland campaign at Day 1, Day 10, Day 30, and Day 45, reconstructed from Figure 2 of the paper.">
+          <defs>
+            <g id="cluster-small">
+              <circle cx="0" cy="0" r="6" fill="#d62828"/>
+              <g stroke="#ffffff" stroke-width="2">
+                <line x1="0" y1="0" x2="40" y2="-26"/><line x1="0" y1="0" x2="55" y2="4"/><line x1="0" y1="0" x2="30" y2="35"/>
+                <line x1="0" y1="0" x2="-36" y2="-28"/><line x1="0" y1="0" x2="-52" y2="8"/><line x1="0" y1="0" x2="-28" y2="42"/>
+                <line x1="0" y1="0" x2="8" y2="-52"/><line x1="0" y1="0" x2="4" y2="54"/>
+              </g>
+              <g fill="#f6cc38" stroke="#fff" stroke-width="1.5">
+                <circle cx="40" cy="-26" r="5"/><circle cx="55" cy="4" r="5"/><circle cx="30" cy="35" r="5"/><circle cx="-36" cy="-28" r="5"/>
+                <circle cx="-52" cy="8" r="5"/><circle cx="-28" cy="42" r="5"/><circle cx="8" cy="-52" r="5"/><circle cx="4" cy="54" r="5"/>
+              </g>
+            </g>
+            <g id="cluster-med">
+              <use href="#cluster-small"/>
+              <g stroke="#ffffff" stroke-width="1.7">
+                <line x1="0" y1="0" x2="78" y2="-42"/><line x1="0" y1="0" x2="92" y2="10"/><line x1="0" y1="0" x2="66" y2="58"/>
+                <line x1="0" y1="0" x2="-72" y2="-52"/><line x1="0" y1="0" x2="-92" y2="0"/><line x1="0" y1="0" x2="-64" y2="62"/>
+                <line x1="0" y1="0" x2="25" y2="-82"/><line x1="0" y1="0" x2="-18" y2="-90"/><line x1="0" y1="0" x2="18" y2="86"/>
+              </g>
+              <g fill="#f6cc38" stroke="#fff" stroke-width="1.3">
+                <circle cx="78" cy="-42" r="4.5"/><circle cx="92" cy="10" r="4.5"/><circle cx="66" cy="58" r="4.5"/>
+                <circle cx="-72" cy="-52" r="4.5"/><circle cx="-92" cy="0" r="4.5"/><circle cx="-64" cy="62" r="4.5"/>
+                <circle cx="25" cy="-82" r="4.5"/><circle cx="-18" cy="-90" r="4.5"/><circle cx="18" cy="86" r="4.5"/>
+              </g>
+            </g>
+          </defs>
+
+          <g font-family="Inter,Arial,sans-serif" font-weight="800" fill="#111827">
+            <rect x="105" y="20" width="230" height="48" rx="6" fill="#f4f4f4" stroke="#284a8a" stroke-width="2"/>
+            <text x="220" y="52" text-anchor="middle" font-size="28">Day 1</text>
+            <rect x="565" y="20" width="230" height="48" rx="6" fill="#f4f4f4" stroke="#284a8a" stroke-width="2"/>
+            <text x="680" y="52" text-anchor="middle" font-size="28">Day 10</text>
+            <rect x="105" y="315" width="230" height="48" rx="6" fill="#f4f4f4" stroke="#284a8a" stroke-width="2"/>
+            <text x="220" y="347" text-anchor="middle" font-size="28">Day 30</text>
+            <rect x="565" y="315" width="230" height="48" rx="6" fill="#f4f4f4" stroke="#284a8a" stroke-width="2"/>
+            <text x="680" y="347" text-anchor="middle" font-size="28">Day 45</text>
+          </g>
+
+          <g>
+            <rect x="35" y="82" width="370" height="210" rx="8" fill="#d9d3c8"/>
+            <g transform="translate(210 145)"><use href="#cluster-small"/></g>
+            <g transform="translate(270 205) scale(.65)"><use href="#cluster-small"/></g>
+            <g transform="translate(145 235) scale(.62)"><use href="#cluster-small"/></g>
+            <g transform="translate(335 248) scale(.48)"><use href="#cluster-small"/></g>
+            <text x="196" y="142" font-size="16" font-style="italic" fill="#111">A₁</text>
+            <text x="260" y="205" font-size="16" font-style="italic" fill="#111">A₂</text>
+            <text x="136" y="234" font-size="16" font-style="italic" fill="#111">B₁</text>
+            <text x="327" y="246" font-size="16" font-style="italic" fill="#111">B₂</text>
+          </g>
+
+          <g>
+            <rect x="495" y="82" width="370" height="210" rx="8" fill="#d9d3c8"/>
+            <g transform="translate(620 145) scale(.9)"><use href="#cluster-med"/></g>
+            <g transform="translate(760 130) scale(.62)"><use href="#cluster-med"/></g>
+            <g transform="translate(705 225) scale(.9)"><use href="#cluster-med"/></g>
+            <g transform="translate(585 235) scale(.58)"><use href="#cluster-med"/></g>
+            <g stroke="#fff" stroke-width="2" opacity=".8">
+              <line x1="620" y1="145" x2="705" y2="225"/><line x1="620" y1="145" x2="760" y2="130"/><line x1="585" y1="235" x2="705" y2="225"/>
+            </g>
+          </g>
+
+          <g stroke="#335f9e" stroke-width="4" fill="none">
+            <path d="M410 185 L478 185"/><path d="M470 176 L486 185 L470 194" fill="#335f9e"/>
+            <path d="M680 300 C650 320, 560 345, 470 390"/><path d="M480 378 L463 394 L487 393" fill="#335f9e"/>
+            <path d="M410 475 L478 475"/><path d="M470 466 L486 475 L470 484" fill="#335f9e"/>
+          </g>
+
+          <g>
+            <rect x="35" y="377" width="370" height="205" rx="8" fill="#d9d3c8"/>
+            <g transform="translate(210 470) scale(1.25)"><use href="#cluster-med"/></g>
+            <g transform="translate(305 455) scale(.9)"><use href="#cluster-med"/></g>
+            <g transform="translate(140 505) scale(.88)"><use href="#cluster-med"/></g>
+            <g transform="translate(260 545) scale(.78)"><use href="#cluster-med"/></g>
+            <g stroke="#fff" stroke-width="2" opacity=".8">
+              <line x1="210" y1="470" x2="305" y2="455"/><line x1="210" y1="470" x2="140" y2="505"/><line x1="210" y1="470" x2="260" y2="545"/>
+              <line x1="140" y1="505" x2="260" y2="545"/>
+            </g>
+          </g>
+
+          <g>
+            <rect x="495" y="377" width="370" height="205" rx="8" fill="#d9d3c8"/>
+            <g transform="translate(680 480) scale(1.45)"><use href="#cluster-med"/></g>
+            <g transform="translate(765 455) scale(1.08)"><use href="#cluster-med"/></g>
+            <g transform="translate(585 505) scale(1.12)"><use href="#cluster-med"/></g>
+            <g transform="translate(700 545) scale(1.0)"><use href="#cluster-med"/></g>
+            <g stroke="#fff" stroke-width="2.2" opacity=".85">
+              <line x1="680" y1="480" x2="765" y2="455"/><line x1="680" y1="480" x2="585" y2="505"/><line x1="680" y1="480" x2="700" y2="545"/>
+              <line x1="585" y1="505" x2="700" y2="545"/><line x1="765" y1="455" x2="700" y2="545"/><line x1="585" y1="505" x2="765" y2="455"/>
+            </g>
+          </g>
+        </svg>
+        <figcaption><strong>Reconstructed from Figure 2 of the paper.</strong> The Ireland retweet network begins around four influential users and expands over the campaign as more users retweet and interact with them.</figcaption>
+      </figure>
+
+      <div class="network-paper-text">
+        <p>A simple tweet count does not tell the whole story. Two campaigns can generate similar volumes of tweets while having very different patterns of influence.</p>
+        <p>In the paper, the network is built from <strong>retweets and mentions</strong>. Four leading influencers anchor the illustrated network—two from each campaign—and the surrounding clusters expand from Day 1 to Day 45 as engagement increases.</p>
+        <div class="network-key-points">
+          <div class="mini-point"><span>Influencers</span><p>High-impact accounts sit near the centers of the major retweet clusters.</p></div>
+          <div class="mini-point"><span>Diffusion</span><p>The clusters become denser and begin to bridge as information spreads across the campaign network.</p></div>
+          <div class="mini-point"><span>Why THANOS adds this</span><p>Harmonic centrality and retweet proportions summarize network influence that hashtag volume alone cannot capture.</p></div>
+        </div>
+        <div class="network-note">The figure is a visual reconstruction of the published network-growth figure rather than a new analysis.</div>
       </div>
     </div>
   </section>
