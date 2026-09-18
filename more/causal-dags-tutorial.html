@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawing and Reading Causal DAGs | Dhrubajyoti Ghosh</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="/nav-more.css" />
+  <style>
+    body{background:linear-gradient(180deg,#f8fbfd 0,#fff 520px);}
+    .tutorial-shell{max-width:1180px;margin:0 auto;padding:0 1.25rem 3.5rem}
+    .tutorial-hero{margin:1.35rem 0 1.1rem;padding:2.5rem;border-radius:26px;background:linear-gradient(135deg,#10243e,#234567 58%,#7a4a8f);color:#fff;position:relative;overflow:hidden;box-shadow:0 18px 44px rgba(16,36,62,.15)}
+    .tutorial-hero:after{content:"DAG";position:absolute;right:-.7rem;bottom:-2.6rem;font-size:9.4rem;font-weight:900;color:rgba(255,255,255,.05)}
+    .tutorial-hero .kicker{font-size:.75rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#dbc7e5}
+    .tutorial-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:3.2rem;line-height:1.04;margin:.35rem 0 .7rem;position:relative;z-index:1}
+    .tutorial-hero p{max-width:880px;color:#edf1f6;line-height:1.65;font-size:1.08rem;margin:0;position:relative;z-index:1}
+    .quick-nav{display:flex;flex-wrap:wrap;gap:.55rem;margin:1rem 0 1.4rem}
+    .quick-nav a{text-decoration:none;border:1px solid #d5e0e8;background:#fff;color:#23384f;padding:.5rem .72rem;border-radius:999px;font-weight:750;font-size:.84rem}
+    .quick-nav a:hover{border-color:#7a4a8f;color:#7a4a8f}
+    .section-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.35rem 1.45rem;margin:1rem 0;box-shadow:0 7px 22px rgba(16,36,62,.045)}
+    .section-label{font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#7a4a8f}
+    .section-card h2{font-family:Inter,system-ui,sans-serif;margin:.2rem 0 .65rem;font-size:1.55rem}
+    .section-card p{color:#475c70;line-height:1.68;margin:.35rem 0}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .callout{border-radius:16px;padding:1rem 1.05rem}
+    .callout.blue{background:#e8f1fa;border:1px solid #d4e2f1}
+    .callout.cream{background:#fff4e2;border:1px solid #efddbc}
+    .callout.lav{background:#f2eaf6;border:1px solid #dfd0e7}
+    .callout.mint{background:#e7f4ee;border:1px solid #cfe6da}
+    .callout.rose{background:#faecef;border:1px solid #efd3da}
+    .callout h3{margin:.1rem 0 .4rem;font-size:1.05rem;color:#10243e}.callout p{margin:0}
+    .dag{position:relative;min-height:220px;margin:.8rem 0;border-radius:16px;background:#fbfcfe;border:1px solid #e2e8ef;overflow:hidden}
+    .node{position:absolute;width:84px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-weight:850;color:#fff;z-index:2;box-shadow:0 5px 14px rgba(16,36,62,.1)}
+    .node.a{background:#3867a6}.node.b{background:#7a4a8f}.node.c{background:#d99a2b;color:#10243e}.node.d{background:#2f6b4f}.node.e{background:#8b3f55}
+    .edge{position:absolute;height:3px;background:#667788;transform-origin:left center;z-index:1}
+    .edge:after{content:"";position:absolute;right:-1px;top:-4px;border-left:9px solid #667788;border-top:5px solid transparent;border-bottom:5px solid transparent}
+    .rule-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:1rem}
+    .rule{border-radius:14px;padding:.9rem;background:#f8fafc;border:1px solid var(--line)}
+    .rule b{display:block;margin-bottom:.2rem;color:#10243e}
+    .path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:.9rem}
+    .path{border-radius:16px;padding:1rem;border:1px solid var(--line);background:#fff}
+    .path-title{font-size:.72rem;text-transform:uppercase;font-weight:900;letter-spacing:.1em;margin-bottom:.35rem}
+    .path .mini-dag{font-family:Georgia,"Times New Roman",serif;font-size:1.45rem;font-weight:800;text-align:center;color:#10243e;margin:.65rem 0}
+    .open{background:#e8f5ef;border-color:#cee6da}.open .path-title{color:#2f6b4f}
+    .closed{background:#faecef;border-color:#efd3da}.closed .path-title{color:#8b3f55}
+    .conditional{background:#fff4e2;border-color:#efddbc}.conditional .path-title{color:#b9791e}
+    .warning{border-left:5px solid #c6842b;background:#fff8ed;padding:1rem 1.1rem;border-radius:12px;margin-top:1rem;color:#4e5967}
+    .adjust-table{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:.3rem;margin-top:1rem}
+    .adjust-table div{padding:.72rem .8rem;border-radius:10px;background:#f8fafc;border:1px solid #e0e7ee}
+    .adjust-table .head{background:#10243e;color:#fff;font-weight:850}
+    .adjust-table .yes{background:#e7f4ee;color:#235844;font-weight:800}.adjust-table .no{background:#faecef;color:#7e3342;font-weight:800}
+    .codebox{background:#f4f7fa;border:1px solid #dce4ec;border-radius:12px;padding:1rem;margin:.75rem 0;font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:.87rem;line-height:1.55;color:#10243e;overflow-x:auto;white-space:pre-wrap}
+    .mistakes{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-top:.8rem}
+    .mistake{background:#fafbfd;border:1px solid var(--line);border-radius:13px;padding:.9rem}
+    .mistake b{display:block;color:#8b3f55;margin-bottom:.25rem}
+    .actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.2rem}
+    .actions a{text-decoration:none;padding:.68rem .95rem;border-radius:999px;border:1px solid #cad7e2;background:#fff;color:#10243e;font-weight:800}
+    .actions a.primary{background:#10243e;color:#fff;border-color:#10243e}
+    @media(max-width:900px){.split,.tri,.path-grid,.rule-strip{grid-template-columns:1fr}.adjust-table{grid-template-columns:1fr}.adjust-table .head{display:none}}
+    @media(max-width:620px){.tutorial-shell{padding-left:1rem;padding-right:1rem}.tutorial-hero{padding:1.7rem 1.3rem}.tutorial-hero h1{font-size:2.2rem}}
+  </style>
+</head>
+<body>
+<nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="/index.html">Dhrubajyoti Ghosh</a><div class="site-links"><a href="/index.html">Home</a><a href="/research.html">Research</a><a href="/publications.html">Publications</a><a href="/lindt-lab.html">LINDT-C Lab</a><a href="/software.html">Software</a><a href="/teaching.html">Teaching</a><a href="/news/index.html">News</a><div class="nav-more"><button class="nav-more-trigger" type="button" aria-label="More" aria-haspopup="true">⋯</button><div class="nav-more-menu"><a href="/more/research-notes.html">Research Notes</a><a href="/more/resources.html">Tutorials &amp; Resources</a><a href="/more/poetry.html">Poetry</a><a href="/more/writing.html">Essays &amp; Reflections</a></div></div><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a></div></div></nav>
+
+<main class="tutorial-shell">
+  <section class="tutorial-hero">
+    <div class="kicker">Tutorial · Causal inference</div>
+    <h1>Drawing and Reading Causal DAGs</h1>
+    <p>A practical guide to confounders, mediators, colliders, d-separation, and choosing adjustment sets without accidentally opening the wrong path.</p>
+  </section>
+
+  <nav class="quick-nav" aria-label="Tutorial sections">
+    <a href="#dag">1. DAG basics</a>
+    <a href="#roles">2. Three key roles</a>
+    <a href="#paths">3. Open &amp; closed paths</a>
+    <a href="#dsep">4. d-separation</a>
+    <a href="#adjust">5. Adjustment</a>
+    <a href="#frontdoor">6. Front-door idea</a>
+    <a href="#code">7. R example</a>
+    <a href="#mistakes">8. Common mistakes</a>
+  </nav>
+
+  <section id="dag" class="section-card">
+    <div class="section-label">1 · DAG basics</div>
+    <h2>A DAG is a picture of causal assumptions</h2>
+    <div class="split">
+      <div>
+        <p><strong>DAG</strong> stands for <strong>Directed Acyclic Graph</strong>. Variables are shown as nodes and arrows encode assumed causal directions.</p>
+        <div class="rule-strip">
+          <div class="rule"><b>Directed</b>Arrows have a direction: X → Y.</div>
+          <div class="rule"><b>Acyclic</b>You cannot follow arrows and come back to where you started.</div>
+          <div class="rule"><b>Assumptions</b>A DAG is not automatically learned from the data. It represents a causal story you are willing to defend.</div>
+        </div>
+      </div>
+      <div class="callout lav">
+        <h3>One arrow means one causal claim</h3>
+        <p>If you draw <strong>X → Y</strong>, you are asserting that changing X could causally change Y, directly or as part of the represented system.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="roles" class="section-card">
+    <div class="section-label">2 · Three key roles</div>
+    <h2>Confounder, mediator, collider</h2>
+    <div class="tri">
+      <div class="callout blue">
+        <h3>Confounder</h3>
+        <div class="mini-dag" style="font-size:1.3rem;text-align:center;margin:.8rem 0">C → X<br>C → Y</div>
+        <p>C causes both exposure X and outcome Y. This creates a back-door path between X and Y.</p>
+      </div>
+      <div class="callout mint">
+        <h3>Mediator</h3>
+        <div class="mini-dag" style="font-size:1.3rem;text-align:center;margin:.8rem 0">X → M → Y</div>
+        <p>M lies on the causal pathway from X to Y. Adjusting for M changes the estimand from total effect toward a direct effect.</p>
+      </div>
+      <div class="callout cream">
+        <h3>Collider</h3>
+        <div class="mini-dag" style="font-size:1.3rem;text-align:center;margin:.8rem 0">X → C ← Y</div>
+        <p>C is caused by both X and Y. Conditioning on a collider can create an association that was not there before.</p>
+      </div>
+    </div>
+    <div class="warning"><strong>Practical rule:</strong> confounders are often variables you may need to adjust for; colliders are variables you generally do not want to condition on when estimating a total causal effect.</div>
+  </section>
+
+  <section id="paths" class="section-card">
+    <div class="section-label">3 · Open and closed paths</div>
+    <h2>Not every path transmits association</h2>
+    <div class="path-grid">
+      <div class="path open">
+        <div class="path-title">Chain</div>
+        <div class="mini-dag">X → M → Y</div>
+        <p>Open unless you condition on M.</p>
+      </div>
+      <div class="path open">
+        <div class="path-title">Fork</div>
+        <div class="mini-dag">X ← C → Y</div>
+        <p>Open unless you condition on C.</p>
+      </div>
+      <div class="path closed">
+        <div class="path-title">Collider</div>
+        <div class="mini-dag">X → C ← Y</div>
+        <p>Closed by default. Conditioning on C can open it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="dsep" class="section-card">
+    <div class="section-label">4 · d-separation</div>
+    <h2>The graphical rule for blocking paths</h2>
+    <p>Two variables are <strong>d-separated</strong> by a set Z when every path between them is blocked according to the DAG rules. In causal inference, we use this idea to decide whether a proposed adjustment set blocks noncausal paths without opening new ones.</p>
+    <div class="split">
+      <div class="callout mint">
+        <h3>A path is blocked when...</h3>
+        <p>You condition on a non-collider along a chain or fork.</p>
+      </div>
+      <div class="callout rose">
+        <h3>A collider path can become open when...</h3>
+        <p>You condition on the collider itself or, in general, on one of its descendants.</p>
+      </div>
+    </div>
+    <div class="warning"><strong>d-separation is a graphical property.</strong> It is not the same thing as running a statistical independence test on your sample.</div>
+  </section>
+
+  <section id="adjust" class="section-card">
+    <div class="section-label">5 · Adjustment</div>
+    <h2>What should you adjust for?</h2>
+    <p>The aim is to block noncausal back-door paths between exposure and outcome while leaving the causal pathway of interest intact.</p>
+    <div class="adjust-table">
+      <div class="head">Variable role</div><div class="head">Adjust for total effect?</div><div class="head">Why?</div>
+      <div>Confounder</div><div class="yes">Usually yes</div><div>Blocks a back-door path.</div>
+      <div>Mediator</div><div class="no">Usually no</div><div>Blocks part of the causal effect you may want to estimate.</div>
+      <div>Collider</div><div class="no">No</div><div>Can open a spurious path and induce bias.</div>
+    </div>
+    <div class="warning"><strong>Adjustment does not mean “put every available covariate into a regression.”</strong> The DAG determines which variables are appropriate for the causal estimand.</div>
+  </section>
+
+  <section id="frontdoor" class="section-card">
+    <div class="section-label">6 · When back-door adjustment is impossible</div>
+    <h2>The front-door idea</h2>
+    <div class="split">
+      <div>
+        <p>If important confounding between X and Y is unmeasured, a valid back-door adjustment set may not exist.</p>
+        <p>Under stronger structural assumptions, a measured mediator M can sometimes identify the causal effect through a <strong>front-door</strong> strategy.</p>
+      </div>
+      <div class="callout cream">
+        <h3>Canonical pattern</h3>
+        <div class="mini-dag" style="font-size:1.5rem;text-align:center;margin:.8rem 0">X → M → Y</div>
+        <p>The front-door criterion requires more than merely observing a mediator: the relevant paths involving X, M, and Y must satisfy the required graphical conditions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="code" class="section-card">
+    <div class="section-label">7 · R example</div>
+    <h2>Represent a DAG with <code>dagitty</code></h2>
+    <div class="codebox">library(dagitty)
+
+g &lt;- dagitty("
+dag {
+  C -&gt; X
+  C -&gt; Y
+  X -&gt; Y
+}
+")
+
+adjustmentSets(g, exposure = "X", outcome = "Y")</div>
+    <p>In this simple DAG, C is a confounder. A valid adjustment set contains C because it blocks the back-door path X ← C → Y.</p>
+  </section>
+
+  <section id="mistakes" class="section-card">
+    <div class="section-label">8 · Common mistakes</div>
+    <h2>What students most often get wrong</h2>
+    <div class="mistakes">
+      <div class="mistake"><b>Adjusting for every measured covariate</b>More adjustment is not automatically better. Some variables create bias when conditioned on.</div>
+      <div class="mistake"><b>Adjusting for a collider</b>This can open a previously blocked path and create an artificial association.</div>
+      <div class="mistake"><b>Treating a DAG as a statistical correlation graph</b>Arrows encode causal assumptions, not merely observed associations.</div>
+      <div class="mistake"><b>Thinking a DAG proves causality</b>A DAG helps formalize assumptions and identify consequences. The validity of the analysis still depends on whether those assumptions are defensible.</div>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <div class="section-label">One-minute summary</div>
+    <h2>What to remember</h2>
+    <div class="tri">
+      <div class="callout blue"><h3>Confounder</h3><p>Common cause. Usually block it.</p></div>
+      <div class="callout mint"><h3>Mediator</h3><p>On the causal pathway. Adjust only if your estimand calls for it.</p></div>
+      <div class="callout cream"><h3>Collider</h3><p>Common effect. Usually leave it alone.</p></div>
+    </div>
+    <div class="actions"><a class="primary" href="/teaching.html">Teaching</a><a href="/more/resources.html">Back to Tutorials &amp; Resources</a></div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
+</body>
+</html>
