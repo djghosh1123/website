@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started with LRST | Dhrubajyoti Ghosh</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="/nav-more.css" />
+  <style>
+    body{background:linear-gradient(180deg,#f8fbfd 0,#fff 500px);}
+    .tutorial-shell{max-width:1180px;margin:0 auto;padding:0 1.25rem 3.5rem}
+    .tutorial-hero{margin:1.35rem 0 1.1rem;padding:2.5rem;border-radius:26px;background:linear-gradient(135deg,#10243e,#15415c 58%,#0c6b7d);color:#fff;position:relative;overflow:hidden;box-shadow:0 18px 44px rgba(16,36,62,.15)}
+    .tutorial-hero:after{content:"LRST";position:absolute;right:-.8rem;bottom:-2.4rem;font-size:8.8rem;font-weight:900;color:rgba(255,255,255,.05)}
+    .tutorial-hero .kicker{font-size:.75rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#9fdce3}
+    .tutorial-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:3.25rem;line-height:1.04;margin:.35rem 0 .7rem;position:relative;z-index:1}
+    .tutorial-hero p{max-width:850px;color:#e4eef4;line-height:1.65;font-size:1.08rem;margin:0;position:relative;z-index:1}
+    .quick-nav{display:flex;flex-wrap:wrap;gap:.55rem;margin:1rem 0 1.4rem}
+    .quick-nav a{text-decoration:none;border:1px solid #d5e0e8;background:#fff;color:#23384f;padding:.5rem .72rem;border-radius:999px;font-weight:750;font-size:.84rem}
+    .quick-nav a:hover{border-color:#0c6b7d;color:#0c6b7d}
+    .section-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.35rem 1.45rem;margin:1rem 0;box-shadow:0 7px 22px rgba(16,36,62,.045)}
+    .section-label{font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#0c6b7d}
+    .section-card h2{font-family:Inter,system-ui,sans-serif;margin:.2rem 0 .65rem;font-size:1.55rem}
+    .section-card p{color:#475c70;line-height:1.68;margin:.35rem 0}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .callout{border-radius:16px;padding:1rem 1.05rem}
+    .callout.teal{background:#e5f3f5;border:1px solid #c8e3e7}
+    .callout.cream{background:#fff4e2;border:1px solid #efddbc}
+    .callout.lav{background:#f2eaf6;border:1px solid #dfd0e7}
+    .callout.mint{background:#e7f4ee;border:1px solid #cfe6da}
+    .callout h3{margin:.1rem 0 .4rem;font-size:1.05rem;color:#10243e}.callout p{margin:0}
+    .array-diagram{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:1rem}
+    .dim{border-radius:14px;padding:1rem;text-align:center;color:#fff;font-weight:850}
+    .dim small{display:block;font-weight:600;opacity:.9;margin-top:.25rem}
+    .dim:nth-child(1){background:#3867a6}.dim:nth-child(2){background:#7a4a8f}.dim:nth-child(3){background:#c6842b;color:#10243e}
+    .codebox{background:#f4f7fa;border:1px solid #dce4ec;border-radius:12px;padding:1rem;margin:.75rem 0;font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:.88rem;line-height:1.55;color:#10243e;overflow-x:auto;white-space:pre-wrap}
+    .output-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin-top:.9rem}
+    .output-chip{border-radius:13px;padding:.8rem;background:#edf4f7;color:#17344f;border:1px solid #d6e4ea}
+    .output-chip b{display:block;color:#0c6b7d;margin-bottom:.2rem}
+    .warning{border-left:5px solid #c6842b;background:#fff8ed;padding:1rem 1.1rem;border-radius:12px;margin-top:1rem;color:#4e5967}
+    .mistakes{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-top:.8rem}
+    .mistake{background:#fafbfd;border:1px solid var(--line);border-radius:13px;padding:.9rem}
+    .mistake b{display:block;color:#8b3f55;margin-bottom:.25rem}
+    .actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.2rem}
+    .actions a{text-decoration:none;padding:.68rem .95rem;border-radius:999px;border:1px solid #cad7e2;background:#fff;color:#10243e;font-weight:800}
+    .actions a.primary{background:#10243e;color:#fff;border-color:#10243e}
+    @media(max-width:800px){.split,.mistakes{grid-template-columns:1fr}.output-grid{grid-template-columns:1fr}.tutorial-hero h1{font-size:2.55rem}}
+    @media(max-width:620px){.tutorial-shell{padding-left:1rem;padding-right:1rem}.tutorial-hero{padding:1.7rem 1.3rem}.tutorial-hero h1{font-size:2.15rem}.array-diagram{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="/index.html">Dhrubajyoti Ghosh</a><div class="site-links"><a href="/index.html">Home</a><a href="/research.html">Research</a><a href="/publications.html">Publications</a><a href="/lindt-lab.html">LINDT-C Lab</a><a href="/software.html">Software</a><a href="/teaching.html">Teaching</a><a href="/news/index.html">News</a><div class="nav-more"><button class="nav-more-trigger" type="button" aria-label="More" aria-haspopup="true">⋯</button><div class="nav-more-menu"><a href="/more/research-notes.html">Research Notes</a><a href="/more/resources.html">Tutorials &amp; Resources</a><a href="/more/poetry.html">Poetry</a><a href="/more/writing.html">Essays &amp; Reflections</a></div></div><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a></div></div></nav>
+
+<main class="tutorial-shell">
+  <section class="tutorial-hero">
+    <div class="kicker">Tutorial · LRST</div>
+    <h1>Getting Started with LRST</h1>
+    <p>A practical introduction to the Longitudinal Rank-Sum Test: what question it answers, how to shape the data, how to run the R package, and how to interpret the output.</p>
+  </section>
+
+  <nav class="quick-nav" aria-label="Tutorial sections">
+    <a href="#idea">1. The idea</a>
+    <a href="#install">2. Install</a>
+    <a href="#data">3. Shape the data</a>
+    <a href="#run">4. Run LRST</a>
+    <a href="#interpret">5. Interpret</a>
+    <a href="#power">6. Power</a>
+    <a href="#multiarm">7. Multi-arm</a>
+    <a href="#mistakes">8. Common mistakes</a>
+  </nav>
+
+  <section id="idea" class="section-card">
+    <div class="section-label">1 · The idea</div>
+    <h2>What question does LRST answer?</h2>
+    <div class="split">
+      <div class="callout teal">
+        <h3>LRST is a global test</h3>
+        <p>It asks whether one group tends to perform better overall across multiple longitudinal outcomes and follow-up visits.</p>
+      </div>
+      <div class="callout cream">
+        <h3>It is not an endpoint-specific model</h3>
+        <p>It does not replace a model designed to estimate one particular mean difference, one specific time-point contrast, or an individual trajectory.</p>
+      </div>
+    </div>
+    <p>If your scientific question is about the overall multivariate longitudinal profile, LRST is a natural choice. If you want a visual explanation first, see the companion research note.</p>
+    <div class="actions"><a href="/more/lrst.html">See the visual LRST research note</a></div>
+  </section>
+
+  <section id="install" class="section-card">
+    <div class="section-label">2 · Install</div>
+    <h2>Install the package from GitHub</h2>
+    <div class="codebox">devtools::install_github("djghosh1123/LRST")
+library(LRST)</div>
+    <p>The current package documentation uses the GitHub version directly.</p>
+  </section>
+
+  <section id="data" class="section-card">
+    <div class="section-label">3 · Shape the data</div>
+    <h2>LRST expects longitudinal arrays</h2>
+    <p>For the documented two-arm workflow, provide one array for the placebo group and one array for the treatment group.</p>
+    <div class="array-diagram">
+      <div class="dim">n<small>patients</small></div>
+      <div class="dim">K<small>outcomes</small></div>
+      <div class="dim">T<small>time points</small></div>
+    </div>
+    <div class="codebox">dim(X_c)
+# n_placebo × K outcomes × T time points
+
+dim(Y_c)
+# n_treatment × K outcomes × T time points</div>
+    <div class="warning"><strong>Important:</strong> the current <code>lrst.2arm()</code> implementation treats the first time point as baseline and constructs the test from the follow-up visits.</div>
+  </section>
+
+  <section id="run" class="section-card">
+    <div class="section-label">4 · Run LRST</div>
+    <h2>The basic two-arm analysis</h2>
+    <div class="codebox">fit &lt;- lrst.2arm(X_c, Y_c)
+fit$p.value</div>
+    <p>The function takes the two arrays directly. No extra wrapper is required.</p>
+    <div class="output-grid">
+      <div class="output-chip"><b>T.stat</b>Global test statistic.</div>
+      <div class="output-chip"><b>T.sd</b>Estimated standard error.</div>
+      <div class="output-chip"><b>p.value</b>Global p-value for the treatment comparison.</div>
+      <div class="output-chip"><b>U</b>Visit-level score vector used to build the global statistic.</div>
+      <div class="output-chip"><b>cov.U</b>Estimated covariance matrix for those longitudinal scores.</div>
+      <div class="output-chip"><b>theta</b>Estimated relative treatment effects across outcomes and follow-up visits.</div>
+    </div>
+  </section>
+
+  <section id="interpret" class="section-card">
+    <div class="section-label">5 · Interpret</div>
+    <h2>How should you read the result?</h2>
+    <div class="split">
+      <div class="callout mint">
+        <h3>If the global p-value is small</h3>
+        <p>There is evidence of an overall difference between groups across the multivariate longitudinal profile.</p>
+      </div>
+      <div class="callout lav">
+        <h3>Then go back to the science</h3>
+        <p>Inspect individual outcomes and visits to understand where the signal is coming from and whether it is clinically meaningful.</p>
+      </div>
+    </div>
+    <div class="warning"><strong>Do not interpret a significant LRST result as meaning every endpoint improved or every visit showed a treatment effect.</strong> The test is global.</div>
+  </section>
+
+  <section id="power" class="section-card">
+    <div class="section-label">6 · Power</div>
+    <h2>Estimate power from the two arrays</h2>
+    <div class="codebox">estimated_Power(0.05, X_c, Y_c)</div>
+    <p>The documented function returns estimated power at the chosen significance level using the observed placebo and treatment arrays.</p>
+  </section>
+
+  <section id="multiarm" class="section-card">
+    <div class="section-label">7 · Multi-arm</div>
+    <h2>Extend the workflow beyond two groups</h2>
+    <p>For multiple treatment arms, keep the placebo array separate and provide the treatment arms as a list.</p>
+    <div class="codebox">Y &lt;- list(X_dose_1, X_dose_2)
+lrst.MultiArm(X_c, Y)</div>
+    <p>The current function returns <code>p</code>, the selected arm index <code>v</code>, and the final statistic <code>T</code>.</p>
+  </section>
+
+  <section id="mistakes" class="section-card">
+    <div class="section-label">8 · Common mistakes</div>
+    <h2>Things to check before trusting the output</h2>
+    <div class="mistakes">
+      <div class="mistake"><b>Outcome direction is inconsistent</b>Make sure higher or lower values have been aligned so treatment benefit has a consistent direction across outcomes.</div>
+      <div class="mistake"><b>The array dimensions do not match</b>Both groups must contain the same number of outcomes and time points.</div>
+      <div class="mistake"><b>You treat the global p-value as an effect size</b>The p-value answers a hypothesis-testing question. It is not itself a clinical magnitude.</div>
+      <div class="mistake"><b>You skip endpoint-level interpretation</b>LRST summarizes the global signal, but the clinical story still lives in the individual outcomes and visits.</div>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <div class="section-label">Next steps</div>
+    <h2>Go deeper</h2>
+    <p>Use the visual research note for intuition, the GitHub repository for software, and the publication page for the methodological papers.</p>
+    <div class="actions">
+      <a class="primary" href="https://github.com/djghosh1123/LRST">LRST GitHub</a>
+      <a href="/more/lrst.html">Visual LRST note</a>
+      <a href="/publications.html">Related publications</a>
+      <a href="/more/resources.html">Back to Tutorials &amp; Resources</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
+</body>
+</html>
