@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Higher-Order Spectral Analysis in R | Dhrubajyoti Ghosh</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="/nav-more.css" />
+  <style>
+    body{background:linear-gradient(180deg,#f8fbfd 0,#fff 520px)}
+    .tutorial-shell{max-width:1180px;margin:0 auto;padding:0 1.25rem 3.5rem}
+    .tutorial-hero{margin:1.35rem 0 1.1rem;padding:2.5rem;border-radius:26px;background:linear-gradient(135deg,#10243e,#163f5c 52%,#7a4a8f);color:#fff;position:relative;overflow:hidden;box-shadow:0 18px 44px rgba(16,36,62,.15)}
+    .tutorial-hero:after{content:"HOS";position:absolute;right:-.6rem;bottom:-2.5rem;font-size:9rem;font-weight:900;color:rgba(255,255,255,.05)}
+    .tutorial-hero .kicker{font-size:.75rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#d9c8e4}
+    .tutorial-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:3.15rem;line-height:1.04;margin:.35rem 0 .7rem;position:relative;z-index:1}
+    .tutorial-hero p{max-width:900px;color:#edf1f6;line-height:1.65;font-size:1.08rem;margin:0;position:relative;z-index:1}
+    .quick-nav{display:flex;flex-wrap:wrap;gap:.55rem;margin:1rem 0 1.4rem}
+    .quick-nav a{text-decoration:none;border:1px solid #d5e0e8;background:#fff;color:#23384f;padding:.5rem .72rem;border-radius:999px;font-weight:750;font-size:.84rem}
+    .quick-nav a:hover{border-color:#7a4a8f;color:#7a4a8f}
+    .section-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.35rem 1.45rem;margin:1rem 0;box-shadow:0 7px 22px rgba(16,36,62,.045)}
+    .section-label{font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#7a4a8f}
+    .section-card h2{font-family:Inter,system-ui,sans-serif;margin:.2rem 0 .65rem;font-size:1.55rem}
+    .section-card p{color:#475c70;line-height:1.68;margin:.35rem 0}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .callout{border-radius:16px;padding:1rem 1.05rem}
+    .callout.blue{background:#e8f1fa;border:1px solid #d4e2f1}
+    .callout.cream{background:#fff4e2;border:1px solid #efddbc}
+    .callout.lav{background:#f2eaf6;border:1px solid #dfd0e7}
+    .callout.mint{background:#e7f4ee;border:1px solid #cfe6da}
+    .callout.rose{background:#faecef;border:1px solid #efd3da}
+    .callout h3{margin:.1rem 0 .4rem;font-size:1.05rem;color:#10243e}.callout p{margin:0}
+    .spectrum-flow{display:grid;grid-template-columns:1fr 46px 1fr 46px 1fr;gap:.5rem;align-items:center;margin:1rem 0}
+    .spectral-box{border-radius:16px;padding:1.1rem;text-align:center;border:1px solid var(--line);background:#fff}
+    .spectral-box b{display:block;font-size:1.05rem;color:#10243e;margin-bottom:.25rem}
+    .spectral-box span{color:#617086;font-size:.9rem}
+    .arrow{text-align:center;font-size:1.8rem;font-weight:900;color:#7a4a8f}
+    .formula{font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;text-align:center;color:#10243e;background:#f8fafc;border:1px solid #e2e8ef;border-radius:14px;padding:1rem;margin:.8rem 0}
+    .codebox{background:#f4f7fa;border:1px solid #dce4ec;border-radius:12px;padding:1rem;margin:.75rem 0;font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:.86rem;line-height:1.55;color:#10243e;overflow-x:auto;white-space:pre-wrap}
+    .warning{border-left:5px solid #c6842b;background:#fff8ed;padding:1rem 1.1rem;border-radius:12px;margin-top:1rem;color:#4e5967}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:1rem}
+    .step{border-radius:14px;padding:.9rem;background:#f8fafc;border:1px solid var(--line)}
+    .step b{display:block;color:#10243e;margin-bottom:.25rem}
+    .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-top:.8rem}
+    .feature{border-radius:14px;padding:.9rem;background:#fbfcfe;border:1px solid var(--line)}
+    .feature b{display:block;color:#0c6b7d;margin-bottom:.25rem}
+    .actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.2rem}
+    .actions a{text-decoration:none;padding:.68rem .95rem;border-radius:999px;border:1px solid #cad7e2;background:#fff;color:#10243e;font-weight:800}
+    .actions a.primary{background:#10243e;color:#fff;border-color:#10243e}
+    @media(max-width:900px){.split,.tri,.feature-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.spectrum-flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}}
+    @media(max-width:620px){.tutorial-shell{padding-left:1rem;padding-right:1rem}.tutorial-hero{padding:1.7rem 1.3rem}.tutorial-hero h1{font-size:2.2rem}.steps{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="/index.html">Dhrubajyoti Ghosh</a><div class="site-links"><a href="/index.html">Home</a><a href="/research.html">Research</a><a href="/publications.html">Publications</a><a href="/lindt-lab.html">LINDT-C Lab</a><a href="/software.html">Software</a><a href="/teaching.html">Teaching</a><a href="/news/index.html">News</a><div class="nav-more"><button class="nav-more-trigger" type="button" aria-label="More" aria-haspopup="true">⋯</button><div class="nav-more-menu"><a href="/more/research-notes.html">Research Notes</a><a href="/more/resources.html">Tutorials &amp; Resources</a><a href="/more/poetry.html">Poetry</a><a href="/more/writing.html">Essays &amp; Reflections</a></div></div><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a></div></div></nav>
+
+<main class="tutorial-shell">
+  <section class="tutorial-hero">
+    <div class="kicker">Code guide · Time series</div>
+    <h1>Higher-Order Spectral Analysis in R</h1>
+    <p>A practical introduction to spectra, bispectra, polyspectra, and simple R workflows for exploring nonlinear and non-Gaussian dependence in time series.</p>
+  </section>
+
+  <nav class="quick-nav" aria-label="Tutorial sections">
+    <a href="#why">1. Why higher order?</a>
+    <a href="#spectrum">2. Spectrum</a>
+    <a href="#bispectrum">3. Bispectrum</a>
+    <a href="#polyspectrum">4. Polyspectra</a>
+    <a href="#rworkflow">5. R workflow</a>
+    <a href="#means">6. Polyspectral means</a>
+    <a href="#interpret">7. Interpretation</a>
+  </nav>
+
+  <section id="why" class="section-card">
+    <div class="section-label">1 · Why higher order?</div>
+    <h2>The ordinary spectrum only sees second-order dependence</h2>
+    <div class="split">
+      <div class="callout blue">
+        <h3>Second-order spectrum</h3>
+        <p>Describes how variance is distributed across frequencies and is driven by autocovariance structure.</p>
+      </div>
+      <div class="callout lav">
+        <h3>Higher-order spectra</h3>
+        <p>Use third- and higher-order cumulants to detect dependence patterns that can be invisible to ordinary spectral analysis.</p>
+      </div>
+    </div>
+    <div class="warning"><strong>Key idea:</strong> two time series can have very similar second-order spectra while differing substantially in nonlinear or non-Gaussian structure.</div>
+  </section>
+
+  <section id="spectrum" class="section-card">
+    <div class="section-label">2 · Start with the ordinary spectrum</div>
+    <h2>Frequency-domain analysis begins with the Fourier transform</h2>
+    <div class="spectrum-flow">
+      <div class="spectral-box"><b>Time series</b><span>x₁, x₂, …, xₙ</span></div>
+      <div class="arrow">→</div>
+      <div class="spectral-box"><b>FFT</b><span>complex frequency coefficients</span></div>
+      <div class="arrow">→</div>
+      <div class="spectral-box"><b>Periodogram</b><span>power by frequency</span></div>
+    </div>
+    <div class="codebox">x &lt;- scale(my_series, center = TRUE, scale = FALSE)
+n &lt;- length(x)
+
+X &lt;- fft(x)
+
+freq &lt;- (0:(n - 1)) / n
+periodogram &lt;- Mod(X)^2 / n</div>
+    <p>This is the familiar second-order starting point. The periodogram summarizes energy at each frequency, but it does not capture phase coupling among several frequencies.</p>
+  </section>
+
+  <section id="bispectrum" class="section-card">
+    <div class="section-label">3 · The bispectrum</div>
+    <h2>Third-order dependence in the frequency domain</h2>
+    <p>The bispectrum is the Fourier-domain analogue of third-order cumulant structure. A common sample building block uses products of three Fourier coefficients whose frequencies satisfy a frequency-sum constraint.</p>
+    <div class="formula">B(ω₁, ω₂) ∝ X(ω₁) X(ω₂) X*(ω₁ + ω₂)</div>
+    <div class="codebox"># Illustrative raw bispectral product
+k1 &lt;- 5
+k2 &lt;- 9
+k3 &lt;- (k1 + k2) %% n
+
+B_raw &lt;- X[k1 + 1] * X[k2 + 1] * Conj(X[k3 + 1]) / n</div>
+    <p>The magnitude reflects the strength of interaction, while the complex phase carries information about phase relationships among frequencies.</p>
+    <div class="warning"><strong>Important:</strong> this raw product is an instructional building block, not a smoothed production estimator. Practical bispectral estimation usually requires averaging or smoothing to reduce variance.</div>
+  </section>
+
+  <section id="polyspectrum" class="section-card">
+    <div class="section-label">4 · Beyond order three</div>
+    <h2>Polyspectra generalize the same idea</h2>
+    <div class="tri">
+      <div class="callout blue"><h3>Order 2</h3><p>Spectrum: variance and pairwise temporal dependence.</p></div>
+      <div class="callout lav"><h3>Order 3</h3><p>Bispectrum: third-order dependence and frequency coupling.</p></div>
+      <div class="callout cream"><h3>Higher order</h3><p>Polyspectra: richer nonlinear and non-Gaussian interaction structure.</p></div>
+    </div>
+    <p>The dimension of the frequency-domain object increases with order, so visualization and direct estimation become increasingly challenging. This is one reason summaries such as <strong>polyspectral means</strong> are useful.</p>
+  </section>
+
+  <section id="rworkflow" class="section-card">
+    <div class="section-label">5 · A practical R workflow</div>
+    <h2>From raw series to higher-order summaries</h2>
+    <div class="steps">
+      <div class="step"><b>1. Preprocess</b>Center the series; detrend or difference if scientifically appropriate.</div>
+      <div class="step"><b>2. Transform</b>Compute the FFT once and reuse the Fourier coefficients.</div>
+      <div class="step"><b>3. Combine</b>Form products of coefficients satisfying the required frequency constraints.</div>
+      <div class="step"><b>4. Average</b>Use smoothing, binning, or weighted integration to stabilize the estimate.</div>
+    </div>
+    <div class="codebox"># Example: evaluate a grid of raw bispectral products
+B &lt;- matrix(NA_complex_, nrow = m, ncol = m)
+
+for (i in seq_len(m)) {
+  for (j in seq_len(m)) {
+    k1 &lt;- i - 1
+    k2 &lt;- j - 1
+    k3 &lt;- (k1 + k2) %% n
+
+    B[i, j] &lt;- X[k1 + 1] *
+                 X[k2 + 1] *
+                 Conj(X[k3 + 1]) / n
+  }
+}
+
+B_mag &lt;- Mod(B)</div>
+    <p>This code shows the computational pattern. In applied work, choose a nonredundant frequency region and an appropriate smoothing or weighting strategy rather than interpreting every raw cell directly.</p>
+  </section>
+
+  <section id="means" class="section-card">
+    <div class="section-label">6 · Polyspectral means</div>
+    <h2>Summarize a high-dimensional spectrum with a scientifically chosen weight</h2>
+    <p>A polyspectral mean is a weighted average or integral of a higher-order spectrum. Instead of trying to interpret an entire high-dimensional spectral surface, we target a lower-dimensional summary designed around the scientific question.</p>
+    <div class="formula">M<sub>g</sub> = ∫ g(ω) f<sub>k</sub>(ω) dω</div>
+    <div class="split">
+      <div class="callout mint">
+        <h3>Why it helps</h3>
+        <p>Weighted summaries are easier to estimate, compare, test, and use as features for clustering or classification.</p>
+      </div>
+      <div class="callout cream">
+        <h3>Why the weight matters</h3>
+        <p>The weight function g determines which frequency interactions are emphasized, so it should reflect the inferential goal rather than be chosen mechanically.</p>
+      </div>
+    </div>
+    <p>This perspective underlies my work on <em>Polyspectral Mean Estimation of General Nonlinear Processes</em>, which develops asymptotic inference for polyspectral means of general order and uses bispectral summaries for linearity testing and time-series clustering.</p>
+  </section>
+
+  <section id="interpret" class="section-card">
+    <div class="section-label">7 · What should you look for?</div>
+    <h2>Interpret higher-order spectra as structure, not decoration</h2>
+    <div class="feature-grid">
+      <div class="feature"><b>Frequency coupling</b>Localized peaks can indicate interactions among particular frequency combinations.</div>
+      <div class="feature"><b>Departure from linearity</b>Higher-order spectral features can be used to test or diagnose behavior inconsistent with a simple linear-process model.</div>
+      <div class="feature"><b>Non-Gaussian dependence</b>Third- and higher-order cumulants can reveal structure absent from covariance-based summaries.</div>
+      <div class="feature"><b>Feature construction</b>Bispectral or polyspectral summaries can become inputs for clustering, classification, or other downstream analyses.</div>
+    </div>
+    <div class="warning"><strong>Do not read a raw bispectrum like a heatmap of correlations.</strong> Symmetry, redundancy, smoothing, normalization, and the null model all matter for interpretation.</div>
+  </section>
+
+  <section class="section-card">
+    <div class="section-label">Go deeper</div>
+    <h2>Related work</h2>
+    <p>For theory and formal inference, see the polyspectral-mean paper and the broader time-series work on the Publications page.</p>
+    <div class="actions">
+      <a class="primary" href="https://arxiv.org/abs/2410.15187">Polyspectral mean paper</a>
+      <a href="/publications.html">Related publications</a>
+      <a href="/more/resources.html">Back to Tutorials &amp; Resources</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
+</body>
+</html>
