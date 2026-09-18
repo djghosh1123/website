@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is the Longitudinal Rank-Sum Test? | Dhrubajyoti Ghosh</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="/nav-more.css" />
+  <style>
+    body{background:linear-gradient(180deg,#f7f9fc 0,#fff 520px);}
+    .lrst-shell{max-width:1180px;margin:0 auto;padding:0 1.25rem 3.5rem;}
+    .poster-hero{margin:1.35rem 0 1.2rem;border-radius:28px;padding:2.4rem 2.55rem;background:linear-gradient(135deg,#10243e,#143e58 58%,#0c6b7d);color:#fff;position:relative;overflow:hidden;box-shadow:0 18px 46px rgba(16,36,62,.16);}
+    .poster-hero:after{content:"LRST";position:absolute;right:-.6rem;bottom:-2.8rem;font-size:9rem;font-weight:900;color:rgba(255,255,255,.055);letter-spacing:.02em;}
+    .poster-hero .eyebrow{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.95rem}
+    .poster-chip{display:inline-flex;align-items:center;padding:.35rem .65rem;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);font-size:.76rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+    .poster-chip.gold{background:#d99a2b;color:#10243e;border-color:#d99a2b}
+    .poster-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:3.25rem;line-height:1.02;margin:.1rem 0 .7rem;max-width:860px}
+    .poster-hero p{font-size:1.14rem;line-height:1.6;color:#e6f0f5;max-width:850px;margin:.2rem 0 0;position:relative;z-index:1}
+    .poster-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem;margin:1rem 0}
+    .poster-card{border-radius:22px;padding:1.35rem 1.4rem;border:1px solid var(--line);box-shadow:0 8px 24px rgba(16,36,62,.045);position:relative;overflow:hidden}
+    .poster-card h2{font-family:Inter,system-ui,sans-serif;font-size:1.4rem;letter-spacing:-.02em;margin:.15rem 0 .65rem}
+    .poster-card p{margin:.15rem 0;color:#43586d;line-height:1.6}
+    .poster-label{font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem}
+    .card-blue{background:#eaf3fb;border-color:#d4e6f6}.card-blue .poster-label{color:#3867a6}
+    .card-cream{background:#fff5e6;border-color:#efdfc5}.card-cream .poster-label{color:#b8791f}
+    .card-mint{background:#eaf6f1;border-color:#d1e9df}.card-mint .poster-label{color:#2f6b4f}
+    .card-lav{background:#f2ebf6;border-color:#e0d1e8}.card-lav .poster-label{color:#7a4a8f}
+    .card-rose{background:#faecef;border-color:#f0d4da}.card-rose .poster-label{color:#8b3f55}
+    .card-white{background:#fff}
+    .big-question{font-size:1.28rem!important;font-weight:800;color:#10243e!important;line-height:1.45!important}
+    .trial-matrix{display:grid;grid-template-columns:132px repeat(4,1fr);gap:.45rem;margin-top:1rem}
+    .matrix-cell{border-radius:10px;padding:.62rem .45rem;text-align:center;font-size:.8rem;font-weight:750;background:#fff;border:1px solid rgba(16,36,62,.06)}
+    .matrix-head{background:#dfeefa;color:#3867a6}.matrix-outcome-a{background:#dff3f5;color:#0c6b7d}.matrix-outcome-b{background:#fff0d8;color:#a96a15}
+    .matrix-signal-1{background:#e4f4ee}.matrix-signal-2{background:#e6f0fa}.matrix-signal-3{background:#fff6e8}.matrix-signal-4{background:#f0e8f4}
+    .ribbon{margin:1rem 0;border-radius:16px;background:#0c6b7d;color:#fff;padding:1rem 1.25rem;text-align:center;font-size:1.15rem;font-weight:900;letter-spacing:.02em}
+    .rank-layout{display:grid;grid-template-columns:.9fr 60px 1.1fr;gap:.8rem;align-items:center}
+    .rank-list{display:grid;gap:.65rem;margin-top:.8rem}
+    .rank-row{display:grid;grid-template-columns:42px 1fr;gap:.7rem;align-items:center}
+    .rank-dot{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:2px solid #7a4a8f;color:#7a4a8f;font-weight:850}
+    .rank-line{height:9px;border-radius:999px;background:#d8dee6;position:relative}.rank-line:after{content:"";position:absolute;left:0;top:0;height:100%;width:78%;border-radius:999px;background:#0c6b7d}
+    .rank-row:nth-child(2) .rank-line:after{width:69%;background:#2f6b4f}.rank-row:nth-child(3) .rank-line:after{width:46%;background:#d99a2b}.rank-row:nth-child(4) .rank-line:after{width:34%;background:#b95c6b}
+    .rank-arrow{text-align:center;font-size:2.1rem;font-weight:900;color:#7a4a8f}
+    .signal-bars{display:grid;gap:.72rem;margin:.9rem 0}
+    .signal-row{display:grid;grid-template-columns:82px 1fr;gap:.7rem;align-items:center;font-size:.82rem;font-weight:800;color:#344a60}
+    .signal-track{height:13px;border-radius:999px;background:#edf1f5;overflow:hidden}
+    .signal-fill{height:100%;border-radius:999px}.s1{width:75%;background:#0c6b7d}.s2{width:63%;background:#3867a6}.s3{width:70%;background:#7a4a8f}.s4{width:56%;background:#d99a2b}.s5{width:66%;background:#2f6b4f}.s6{width:60%;background:#b95c6b}
+    .dark-box{background:#10243e;color:#fff;border-radius:14px;padding:1rem 1.05rem;margin-top:.9rem}
+    .dark-box b{color:#fff}.dark-box span{display:inline-block;margin-top:.5rem;padding:.32rem .55rem;border-radius:999px;background:#d99a2b;color:#10243e;font-size:.72rem;font-weight:900}
+    .decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+    .question-quote{font-family:Georgia,"Times New Roman",serif;font-size:1.45rem;line-height:1.35;color:#10243e;margin:.5rem 0 1rem}
+    .mini-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+    .mini-pill{padding:.38rem .62rem;border-radius:999px;color:#fff;font-size:.78rem;font-weight:850}
+    .teal{background:#0c6b7d}.blue{background:#3867a6}.purple{background:#7a4a8f}.green{background:#2f6b4f}.gold{background:#d99a2b;color:#10243e}.rose{background:#8b3f55}
+    .program-strip{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.2rem 1.3rem;margin:1rem 0;box-shadow:0 6px 20px rgba(16,36,62,.04)}
+    .program-strip h2{margin:.15rem 0 .2rem;font-size:1.35rem}.program-strip p{margin:.15rem 0 .9rem;color:#526579}
+    .package-hero{margin:1.4rem 0 .9rem;background:linear-gradient(135deg,#0c6b7d,#164f65);color:#fff;border-radius:22px;padding:1.5rem 1.6rem}
+    .package-hero h2{font-family:Inter,system-ui,sans-serif;color:#fff;font-size:1.75rem;margin:.2rem 0 .35rem}.package-hero p{margin:0;color:#dff0f2;line-height:1.55}
+    .package-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .step-card{border-radius:18px;border:1px solid var(--line);padding:1.1rem 1.15rem;min-height:185px}
+    .step-card h3{margin:.2rem 0 .55rem;color:#10243e;font-size:1.05rem}.step-no{display:inline-flex;width:30px;height:30px;border-radius:50%;align-items:center;justify-content:center;color:#fff;font-weight:900;margin-bottom:.6rem}
+    .codebox{background:#f4f7fa;border:1px solid #dce4ec;border-radius:11px;padding:.85rem .9rem;margin:.7rem 0;font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:.8rem;line-height:1.5;color:#10243e;overflow-x:auto}
+    .result-strip{background:#10243e;color:#fff;border-radius:14px;padding:.85rem 1rem;margin:1rem 0}.result-strip b{color:#d99a2b}
+    .extension-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+    .source-note{font-size:.8rem;color:#6b7785;margin-top:1rem}
+    .note-actions{display:flex;flex-wrap:wrap;gap:.65rem;margin:1.3rem 0 0}
+    .note-actions a{display:inline-block;text-decoration:none;padding:.68rem .95rem;border-radius:999px;font-weight:800;border:1px solid #cbd6df;background:#fff;color:#10243e}
+    .note-actions a.primary{background:#10243e;color:#fff;border-color:#10243e}
+    @media(max-width:900px){.poster-grid,.decision-grid,.extension-grid{grid-template-columns:1fr}.package-grid{grid-template-columns:1fr}.rank-layout{grid-template-columns:1fr}.rank-arrow{transform:rotate(90deg)}.trial-matrix{grid-template-columns:110px repeat(4,minmax(70px,1fr));overflow-x:auto}.poster-hero h1{font-size:2.7rem}}
+    @media(max-width:650px){.lrst-shell{padding-left:1rem;padding-right:1rem}.poster-hero{padding:1.8rem 1.3rem;border-radius:20px}.poster-hero h1{font-size:2.25rem}.poster-card{padding:1.05rem}.trial-matrix{font-size:.72rem}.package-hero{padding:1.25rem}.question-quote{font-size:1.25rem}}
+  </style>
+</head>
+<body>
+<nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="/index.html">Dhrubajyoti Ghosh</a><div class="site-links"><a href="/index.html">Home</a><a href="/research.html">Research</a><a href="/publications.html">Publications</a><a href="/lindt-lab.html">LINDT-C Lab</a><a href="/software.html">Software</a><a href="/teaching.html">Teaching</a><a href="/news/index.html">News</a><div class="nav-more"><button class="nav-more-trigger" type="button" aria-label="More" aria-haspopup="true">⋯</button><div class="nav-more-menu"><a href="/more/research-notes.html">Research Notes</a><a href="/more/resources.html">Tutorials &amp; Resources</a><a href="/more/poetry.html">Poetry</a><a href="/more/writing.html">Essays &amp; Reflections</a></div></div><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a></div></div></nav>
+
+<main class="lrst-shell">
+  <section class="poster-hero">
+    <div class="eyebrow"><span class="poster-chip">Research Note</span><span class="poster-chip gold">LRST</span></div>
+    <h1>What is the Longitudinal Rank-Sum Test?</h1>
+    <p>A visual guide to one global question from many repeated outcomes.</p>
+  </section>
+
+  <section class="poster-grid">
+    <article class="poster-card card-blue">
+      <div class="poster-label">The problem</div>
+      <h2>Clinical trials rarely give us one clean number.</h2>
+      <p>They give us a grid of measurements: several clinically important outcomes, measured repeatedly over time.</p>
+      <div class="trial-matrix">
+        <div></div><div class="matrix-cell matrix-head">Month 6</div><div class="matrix-cell matrix-head">Month 12</div><div class="matrix-cell matrix-head">Month 18</div><div class="matrix-cell matrix-head">Month 24</div>
+        <div class="matrix-cell matrix-outcome-a">Cognition</div><div class="matrix-cell matrix-signal-1">small</div><div class="matrix-cell matrix-signal-2">modest</div><div class="matrix-cell matrix-signal-3">small</div><div class="matrix-cell matrix-signal-4">modest</div>
+        <div class="matrix-cell matrix-outcome-b">Daily function</div><div class="matrix-cell matrix-signal-2">small</div><div class="matrix-cell matrix-signal-3">small</div><div class="matrix-cell matrix-signal-4">modest</div><div class="matrix-cell matrix-signal-1">modest</div>
+      </div>
+    </article>
+    <article class="poster-card card-cream">
+      <div class="poster-label">The wrong question</div>
+      <p class="big-question">“Which single box is significant?”</p>
+      <p>The treatment effect may be spread across the whole pattern rather than concentrated in one dramatic measurement.</p>
+      <div class="poster-label" style="margin-top:1.1rem;color:#0c6b7d">LRST asks instead</div>
+      <p class="big-question">“Across the outcomes and visits taken together, does treatment tend to do better overall?”</p>
+    </article>
+  </section>
+
+  <div class="ribbon">MANY MEASUREMENTS &nbsp;→&nbsp; ONE GLOBAL QUESTION</div>
+
+  <section class="poster-grid">
+    <article class="poster-card card-lav">
+      <div class="poster-label">How LRST thinks</div>
+      <h2>Forget the formula for a moment.</h2>
+      <p>Think in terms of who tends to rank better.</p>
+      <div class="rank-layout">
+        <div>
+          <div class="rank-list">
+            <div class="rank-row"><div class="rank-dot">T1</div><div class="rank-line"></div></div>
+            <div class="rank-row"><div class="rank-dot">T2</div><div class="rank-line"></div></div>
+            <div class="rank-row"><div class="rank-dot">P1</div><div class="rank-line"></div></div>
+            <div class="rank-row"><div class="rank-dot">P2</div><div class="rank-line"></div></div>
+          </div>
+        </div>
+        <div class="rank-arrow">→</div>
+        <div>
+          <div class="poster-label" style="color:#0c6b7d">Repeat across outcomes × visits</div>
+          <div class="signal-bars">
+            <div class="signal-row"><span>Cog · M6</span><div class="signal-track"><div class="signal-fill s1"></div></div></div>
+            <div class="signal-row"><span>Cog · M12</span><div class="signal-track"><div class="signal-fill s2"></div></div></div>
+            <div class="signal-row"><span>Cog · M18</span><div class="signal-track"><div class="signal-fill s3"></div></div></div>
+            <div class="signal-row"><span>Func · M6</span><div class="signal-track"><div class="signal-fill s4"></div></div></div>
+            <div class="signal-row"><span>Func · M12</span><div class="signal-track"><div class="signal-fill s5"></div></div></div>
+            <div class="signal-row"><span>Func · M18</span><div class="signal-track"><div class="signal-fill s6"></div></div></div>
+          </div>
+          <div class="dark-box"><b>LRST combines the pattern into one global statistic.</b><br><span>GLOBAL TREATMENT SIGNAL</span></div>
+        </div>
+      </div>
+    </article>
+    <article class="poster-card card-white">
+      <div class="poster-label" style="color:#d99a2b">The intuition</div>
+      <p class="question-quote">LRST is looking for a repeated overall advantage — not one dramatic box.</p>
+      <p>That makes the method natural when the scientific question is about overall treatment benefit across multiple repeatedly measured outcomes.</p>
+    </article>
+  </section>
+
+  <section class="decision-grid">
+    <article class="poster-card card-mint">
+      <div class="poster-label">Use LRST when your question is...</div>
+      <p class="question-quote">“Is there an overall treatment advantage across important outcomes and visits?”</p>
+      <p>This is the sweet spot for LRST: several outcomes, repeated visits, different scales, and a desire for one robust global test rather than many scattered p-values.</p>
+      <div class="mini-pills"><span class="mini-pill teal">Multiple outcomes</span><span class="mini-pill blue">Repeated visits</span><span class="mini-pill purple">Different scales</span><span class="mini-pill green">Robust global test</span></div>
+    </article>
+    <article class="poster-card card-rose">
+      <div class="poster-label">Use a more targeted model when...</div>
+      <p class="question-quote">“Exactly how much does this specific endpoint change at this specific time?”</p>
+      <p>If the real goal is a precise mean difference, an individual trajectory, a treatment-by-time interaction, or prediction, then a more targeted longitudinal model is usually the better fit.</p>
+      <div class="mini-pills"><span class="mini-pill gold">Specific mean difference</span><span class="mini-pill rose">Treatment × time slope</span><span class="mini-pill purple">Individual trajectories</span><span class="mini-pill blue">Prediction</span></div>
+    </article>
+  </section>
+
+  <section class="program-strip">
+    <div class="poster-label" style="color:#0c6b7d">The LRST program</div>
+    <h2>The core idea has grown into a broader family of methods.</h2>
+    <p>The same research program includes extensions for increasingly complex longitudinal settings.</p>
+    <div class="mini-pills"><span class="mini-pill teal">Core LRST</span><span class="mini-pill purple">Multi-arm</span><span class="mini-pill gold">Power &amp; sample size</span><span class="mini-pill rose">Missing data</span><span class="mini-pill blue">Covariate adjustment</span><span class="mini-pill green">Observational</span></div>
+  </section>
+
+  <section class="package-hero">
+    <div class="poster-label" style="color:#d99a2b">Using the LRST R package</div>
+    <h2>Install → shape the data → run LRST → interpret the global result</h2>
+    <p>This workflow follows the current package README and exported R functions.</p>
+  </section>
+
+  <section class="package-grid">
+    <article class="step-card card-blue">
+      <span class="step-no" style="background:#3867a6">1</span>
+      <h3>Install from GitHub</h3>
+      <div class="codebox">devtools::install_github("djghosh1123/LRST")<br>library(LRST)</div>
+      <p>No wrapper is needed: the documented package API works directly with the LRST functions.</p>
+    </article>
+    <article class="step-card card-mint">
+      <span class="step-no" style="background:#2f6b4f">2</span>
+      <h3>Shape the data as arrays</h3>
+      <p>For the two-arm test, provide one placebo array and one treatment array.</p>
+      <div class="mini-pills"><span class="mini-pill blue">n patients</span><span class="mini-pill purple">K outcomes</span><span class="mini-pill gold">T time points</span></div>
+    </article>
+    <article class="step-card card-cream">
+      <span class="step-no" style="background:#d99a2b;color:#10243e">3</span>
+      <h3>Run the two-arm LRST</h3>
+      <div class="codebox">fit &lt;- lrst.2arm(X_c, Y_c)<br>fit$p.value</div>
+      <p>The returned object includes the test statistic, standard error, p-value, visit-level score vector, covariance estimate, and relative treatment-effect estimates.</p>
+    </article>
+  </section>
+
+  <div class="result-strip"><b>Interpretation:</b> the p-value is evidence about the global treatment comparison across the multivariate longitudinal profile. It does not replace endpoint-specific scientific interpretation.</div>
+
+  <section class="extension-grid">
+    <article class="poster-card card-lav">
+      <div class="poster-label">Estimated power</div>
+      <h2>Use the same two arrays</h2>
+      <div class="codebox">estimated_Power(0.05, X_c, Y_c)</div>
+      <p>The package estimates power at the chosen significance level using the observed placebo and treatment arrays.</p>
+    </article>
+    <article class="poster-card card-mint">
+      <div class="poster-label">Multi-arm LRST</div>
+      <h2>Placebo + a list of treatment arrays</h2>
+      <div class="codebox">Y &lt;- list(X_dose_1, X_dose_2)<br>lrst.MultiArm(X_c, Y)</div>
+      <p>The documented multi-arm function returns the p-value, selected arm index <code>v</code>, and final test statistic <code>T</code>.</p>
+    </article>
+  </section>
+
+  <p class="source-note">Package workflow based on the current <code>djghosh1123/LRST</code> GitHub README and exported function documentation.</p>
+  <div class="note-actions">
+    <a class="primary" href="https://github.com/djghosh1123/LRST">View LRST on GitHub</a>
+    <a href="/publications.html">Related publications</a>
+    <a href="/more/research-notes.html">Back to Research Notes</a>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
+</body>
+</html>
