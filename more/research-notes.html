@@ -32,11 +32,19 @@
     .lrst-grid span{border-radius:9px;background:#fff;border:1px solid rgba(16,36,62,.06)}
     .lrst-grid span:nth-child(2n){background:#e1eef9}.lrst-grid span:nth-child(3n){background:#fff0d8}.lrst-grid span:nth-child(5n){background:#e3f3ed}
     .lrst-pill{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);background:#0c6b7d;color:#fff;padding:.5rem .75rem;border-radius:999px;font-size:.72rem;font-weight:900;white-space:nowrap;box-shadow:0 5px 14px rgba(12,107,125,.2)}
-    .wave{position:absolute;left:18px;right:18px;height:4px;border-radius:999px;background:#7a4a8f;transform-origin:left center}
-    .w1{top:65px;transform:rotate(7deg)}.w2{top:96px;transform:rotate(-8deg);background:#3867a6}.w3{top:127px;transform:rotate(11deg);background:#c6842b}
-    .freq-dot{position:absolute;width:18px;height:18px;border-radius:50%;background:#7a4a8f;box-shadow:0 0 0 7px rgba(122,74,143,.12)}
-    .d1{left:19%;top:50px}.d2{left:48%;top:100px;background:#3867a6}.d3{right:18%;top:66px;background:#c6842b}
-    .hos-label{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:.74rem;font-weight:900;color:#10243e;background:#fff;padding:.45rem .7rem;border-radius:999px;border:1px solid #ddd}
+    .bispec-wrap{position:absolute;inset:20px 22px 18px 22px;display:grid;grid-template-columns:1fr 1.12fr;gap:14px;align-items:center}
+    .spec-panel{height:150px;border-radius:14px;background:linear-gradient(180deg,#fff,#f8fafc);border:1px solid #dbe4ec;padding:12px;position:relative;box-shadow:0 5px 12px rgba(16,36,62,.04)}
+    .spec-title{font-size:.62rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#667789;margin-bottom:8px}
+    .spec-bars{display:flex;align-items:flex-end;gap:5px;height:92px}
+    .spec-bars span{display:block;flex:1;border-radius:4px 4px 2px 2px;background:#7a4a8f}
+    .spec-bars span:nth-child(2){height:34%;background:#9d79ae}.spec-bars span:nth-child(3){height:72%;background:#3867a6}.spec-bars span:nth-child(4){height:44%;background:#6c8fc0}.spec-bars span:nth-child(5){height:88%;background:#c6842b}.spec-bars span:nth-child(6){height:52%;background:#ddb36e}.spec-bars span:nth-child(7){height:64%;background:#7a4a8f}
+    .spec-bars span:nth-child(1){height:56%}
+    .bispec-panel{height:150px;border-radius:14px;background:#10243e;border:1px solid #233b57;padding:12px;position:relative;box-shadow:0 6px 14px rgba(16,36,62,.12)}
+    .bispec-title{font-size:.62rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#dce7f1;margin-bottom:7px}
+    .heatmap{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(6,1fr);gap:3px;height:96px}
+    .heatmap span{border-radius:3px;background:#273d59}.heatmap span:nth-child(2n){background:#355b75}.heatmap span:nth-child(3n){background:#6f4f84}.heatmap span:nth-child(5n){background:#b07435}.heatmap span:nth-child(7n){background:#d89a37}.heatmap span:nth-child(11n){background:#9a5d84}.heatmap span:nth-child(13n){background:#4b7990}.heatmap span:nth-child(17n){background:#f0c15d}
+    .bispec-badge{position:absolute;right:10px;bottom:8px;font-size:.62rem;font-weight:900;color:#10243e;background:#fff2cf;padding:.28rem .45rem;border-radius:999px}
+    .hos-arrow{position:absolute;left:calc(45% - 5px);top:78px;color:#7a4a8f;font-weight:900;font-size:1.25rem;z-index:3}
     .dag-node{position:absolute;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;z-index:2;box-shadow:0 6px 14px rgba(16,36,62,.12)}
     .x{left:46px;top:74px;background:#3867a6}.z{left:50%;top:34px;transform:translateX(-50%);background:#7a4a8f}.y{right:46px;top:74px;background:#2f6b4f}
     .dag-line{position:absolute;height:4px;background:#7e8d9d;transform-origin:left center;z-index:1}.l1{left:95px;top:102px;width:105px;transform:rotate(-23deg)}.l2{left:50%;top:72px;width:108px;transform:rotate(23deg)}
@@ -77,9 +85,19 @@
 
     <a class="note-card hos" href="/more/why-higher-order-spectra.html">
       <div class="note-visual">
-        <div class="wave w1"></div><div class="wave w2"></div><div class="wave w3"></div>
-        <div class="freq-dot d1"></div><div class="freq-dot d2"></div><div class="freq-dot d3"></div>
-        <div class="hos-label">SPECTRUM → BISPECTRUM → POLYSPECTRUM</div>
+        <div class="bispec-wrap">
+          <div class="spec-panel">
+            <div class="spec-title">Ordinary spectrum</div>
+            <div class="spec-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="bispec-panel">
+            <div class="bispec-title">Higher-order structure</div>
+            <div class="heatmap">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="bispec-badge">frequency coupling</div>
+          </div>
+        </div>
       </div>
       <div class="note-body">
         <div class="note-kicker">Visual research note · Time series</div>
