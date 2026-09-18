@@ -27,6 +27,16 @@
 
     .citation-count{display:inline-block;margin-left:.45rem;padding:.12rem .44rem;border:1px solid #eadfce;border-radius:999px;background:#fffaf2;color:#7a6548;font-size:.74rem;font-weight:800;line-height:1.35;text-decoration:none;white-space:nowrap;vertical-align:.08rem;}
     .citation-count:hover{background:#fff4e3;color:#6a5337;}
+    .thesis-card{margin:1.2rem 0 1.45rem;border:1px solid #d9e3eb;border-radius:20px;background:linear-gradient(135deg,#f7fbfd,#f4f0f8 58%,#fff7e9);padding:1.35rem 1.45rem;box-shadow:0 8px 24px rgba(16,36,62,.045)}
+    .thesis-card-grid{display:grid;grid-template-columns:1fr auto;gap:1.2rem;align-items:center}
+    .thesis-card .pub-section-label{display:block;margin-bottom:.25rem}
+    .thesis-card h2{margin:.15rem 0 .35rem;font-size:1.45rem;color:#10243e}
+    .thesis-card p{margin:.25rem 0;color:#506377;line-height:1.6}
+    .thesis-meta{font-size:.9rem;color:#6a7785!important}
+    .thesis-actions{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:flex-end}
+    .thesis-actions a{display:inline-block;text-decoration:none;padding:.66rem .88rem;border-radius:999px;border:1px solid #cbd7e1;background:#fff;color:#10243e;font-weight:800;white-space:nowrap}
+    .thesis-actions a.primary{background:#10243e;color:#fff;border-color:#10243e}
+    @media(max-width:760px){.thesis-card-grid{grid-template-columns:1fr}.thesis-actions{justify-content:flex-start}}
   </style>
 </head>
 <body class="pub-page">
@@ -40,8 +50,25 @@
       <a class="pill primary" href="https://scholar.google.com/citations?hl=en&amp;user=AAVtmXkAAAAJ">Google Scholar</a>
       <a class="pill" href="https://orcid.org/0000-0002-3360-3786">ORCID</a>
       <a class="pill" href="assets/Dhrubajyoti_Ghosh_CV.pdf">Download CV</a>
+      <a class="pill" href="#dissertation">PhD Dissertation</a>
     </div>
     <p class="pub-note">† Student or trainee supervised/co-supervised by D. Ghosh. Titles are linked only when a verified publisher page or public preprint is available.</p>
+  </section>
+
+  <section id="dissertation" class="thesis-card">
+    <div class="thesis-card-grid">
+      <div>
+        <span class="pub-section-label">PhD Dissertation · 2022</span>
+        <h2>Contribution to Data Science: Time Series, Uncertainty Quantification and Applications</h2>
+        <p>Washington University in St. Louis · Doctor of Philosophy in Statistics</p>
+        <p class="thesis-meta">Advisor: Soumendra Lahiri · Co-Advisor: Tucker McElroy</p>
+        <p>The dissertation brings together nonlinear time-series prediction, polyspectral inference, social-media analytics, bot detection, and bootstrap methods for extreme values.</p>
+      </div>
+      <div class="thesis-actions">
+        <a class="primary" href="https://doi.org/10.7936/7bfa-bw29">Read dissertation</a>
+        <a href="https://openscholarship.wustl.edu/art_sci_etds/2773/">WashU repository</a>
+      </div>
+    </div>
   </section>
 
   <section class="pub-section">
