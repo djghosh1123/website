@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>What Causal Discovery Can—and Cannot—Tell Us | Dhrubajyoti Ghosh</title>
+<link rel="stylesheet" href="../styles.css"/><link rel="stylesheet" href="/nav-more.css"/>
+<style>
+body{background:linear-gradient(180deg,#f8fbfd 0,#fff 520px)}
+.note-shell{max-width:1160px;margin:0 auto;padding:0 1.25rem 3.5rem}
+.hero{margin:1.35rem 0 1rem;padding:2.45rem;border-radius:26px;background:linear-gradient(135deg,#10243e,#163e56 52%,#0c6b7d);color:#fff;position:relative;overflow:hidden}
+.hero:after{content:"DAG";position:absolute;right:-.4rem;bottom:-2.5rem;font-size:9rem;font-weight:900;color:rgba(255,255,255,.05)}
+.k{font-size:.74rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#bfe3e7}.hero h1{font-family:Georgia,serif;font-size:3rem;line-height:1.05;margin:.35rem 0 .7rem}.hero p{font-size:1.08rem;line-height:1.65;color:#edf4f6;max-width:900px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.3rem 1.4rem;margin:1rem 0;box-shadow:0 7px 22px rgba(16,36,62,.04)}.label{font-size:.72rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:#0c6b7d}.card h2{margin:.2rem 0 .6rem;font-size:1.5rem}.card p{color:#4a5e72;line-height:1.66;margin:.35rem 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.call{border-radius:16px;padding:1rem}.mint{background:#e7f4ee;border:1px solid #cfe6da}.rose{background:#faecef;border:1px solid #efd3da}.blue{background:#e8f1fa;border:1px solid #d2e1f0}.cream{background:#fff4e2;border:1px solid #efddbc}.lav{background:#f2eaf6;border:1px solid #dfd0e7}.call h3{margin:.1rem 0 .4rem;color:#10243e}
+.graphrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:1rem}.graph{border-radius:16px;padding:1rem;text-align:center;border:1px solid #dde5ee;background:#f9fbfd}.graph .dag{font-family:Georgia,serif;font-size:1.45rem;font-weight:800;color:#10243e;margin:.6rem 0}
+.rule{display:grid;grid-template-columns:1fr auto 1fr;gap:.7rem;align-items:center;margin-top:1rem}.rbox{border-radius:14px;padding:1rem;text-align:center;background:#f8fafc;border:1px solid var(--line)}.arr{text-align:center;font-size:1.6rem;color:#0c6b7d;font-weight:900}.ribbon{background:#10243e;color:#fff;border-radius:15px;padding:1rem 1.1rem;text-align:center;font-weight:850;margin:1rem 0}
+.actions{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1rem}.actions a{text-decoration:none;padding:.68rem .95rem;border-radius:999px;border:1px solid #cad7e2;color:#10243e;font-weight:800;background:#fff}.actions .primary{background:#10243e;color:#fff}
+@media(max-width:850px){.two,.graphrow,.rule{grid-template-columns:1fr}.arr{transform:rotate(90deg)}.hero h1{font-size:2.35rem}}
+</style>
+</head>
+<body>
+<nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="/index.html">Dhrubajyoti Ghosh</a><div class="site-links"><a href="/index.html">Home</a><a href="/research.html">Research</a><a href="/publications.html">Publications</a><a href="/lindt-lab.html">LINDT-C Lab</a><a href="/software.html">Software</a><a href="/teaching.html">Teaching</a><a href="/news/index.html">News</a><div class="nav-more"><button class="nav-more-trigger" type="button" aria-label="More">⋯</button><div class="nav-more-menu"><a href="/more/research-notes.html">Research Notes</a><a href="/more/resources.html">Tutorials &amp; Resources</a><a href="/more/poetry.html">Poetry</a></div></div><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a></div></div></nav>
+<main class="note-shell">
+<section class="hero"><div class="k">Visual research note · Causal discovery</div><h1>What Causal Discovery Can—and Cannot—Tell Us</h1><p>Causal discovery is powerful because it turns conditional-independence patterns into constraints on possible causal structures. But the output is not the same thing as “the true causal graph.”</p></section>
+
+<section class="card"><div class="label">The goal</div><h2>Start with data, end with a set of plausible causal structures</h2><div class="rule"><div class="rbox"><b>Observed data</b><br><span>conditional independences</span></div><div class="arr">→</div><div class="rbox"><b>Graphical constraints</b><br><span>which directions are compatible?</span></div></div><div class="ribbon">Causal discovery narrows the possibilities; it does not magically remove assumptions.</div></section>
+
+<section class="card"><div class="label">What it can identify</div><h2>Some edges and directions are learnable from the data structure</h2><div class="graphrow"><div class="graph"><b>Skeleton</b><div class="dag">X — Z — Y</div><p>Which variables must be adjacent?</p></div><div class="graph"><b>Collider structure</b><div class="dag">X → Z ← Y</div><p>Some orientations can be identified from independence patterns.</p></div><div class="graph"><b>Equivalence class</b><div class="dag">X ○—○ Z → Y</div><p>Often several causal graphs remain observationally indistinguishable.</p></div></div></section>
+
+<section class="two">
+<div class="card"><div class="label">What it can do</div><h2>Useful conclusions</h2><div class="call mint"><h3>Rule out structures</h3><p>Discovery algorithms can show that some causal configurations are incompatible with the observed independences under the assumed model class.</p></div><div class="call blue" style="margin-top:.7rem"><h3>Expose ambiguity</h3><p>A partially oriented graph is useful information: it tells you exactly which directions the data do not determine.</p></div></div>
+<div class="card"><div class="label">What it cannot do</div><h2>Important limits</h2><div class="call rose"><h3>Guarantee causal truth</h3><p>The result depends on assumptions such as causal Markov, faithfulness, measurement quality, and the algorithm's treatment of latent confounding.</p></div><div class="call cream" style="margin-top:.7rem"><h3>Resolve every direction</h3><p>If multiple graphs imply the same observed independence structure, no purely observational algorithm can distinguish them without extra information.</p></div></div>
+</section>
+
+<section class="card"><div class="label">Latent confounding</div><h2>Unmeasured variables change what is identifiable</h2><div class="two"><div class="call lav"><h3>If all common causes are measured</h3><p>DAG-based algorithms can work within a simpler causal-sufficiency framework.</p></div><div class="call cream"><h3>If hidden common causes may exist</h3><p>Algorithms such as FCI return richer partial ancestral graphs that explicitly allow latent confounding and leave more endpoints unresolved when needed.</p></div></div></section>
+
+<section class="card"><div class="label">Why assumptions matter</div><h2>Same data, different assumptions, different causal conclusions</h2><p>A graph learned under “no latent confounders” answers a different question from a graph learned while allowing hidden common causes. Similarly, temporal ordering, domain restrictions, or intervention knowledge can orient edges that observational data alone cannot.</p><div class="ribbon">The graph is a combination of data + assumptions + background knowledge.</div></section>
+
+<section class="card"><div class="label">Practical interpretation</div><h2>Read partial graphs literally</h2><div class="two"><div class="call mint"><h3>Arrowhead</h3><p>An arrowhead represents an orientation that is compelled under the algorithm's assumptions.</p></div><div class="call rose"><h3>Circle endpoint</h3><p>A circle is not “uncertainty to ignore.” It means the endpoint is not identified from the available information.</p></div></div><p style="margin-top:.8rem">That distinction is one of the most important habits in reading causal-discovery output responsibly.</p></section>
+
+<section class="card"><div class="label">Bottom line</div><h2>Causal discovery is a constraint-discovery tool, not a causal oracle</h2><p>Its real value is in showing which causal statements are supported, which are ruled out, and which remain unresolved under a clearly stated set of assumptions.</p><div class="actions"><a class="primary" href="/more/causal-dags-tutorial.html">See the DAG tutorial</a><a href="/publications.html">Related causal discovery work</a><a href="/more/research-notes.html">Back to Research Notes</a></div></section>
+</main>
+<footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
+</body></html>
