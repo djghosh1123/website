@@ -9,7 +9,6 @@ DROPDOWN = (
     '<a href="/more/research-notes.html">Research Notes</a>'
     '<a href="/more/resources.html">Tutorials &amp; Resources</a>'
     '<a href="/more/poetry.html">Poetry</a>'
-    '<a href="/more/writing.html">Essays &amp; Reflections</a>'
     '</div></div>'
 )
 
@@ -19,6 +18,9 @@ changed = []
 for path in Path('.').rglob('*.html'):
     text = path.read_text(encoding='utf-8')
     original = text
+
+    # Remove the retired Essays & Reflections entry from existing dropdowns.
+    text = text.replace('<a href="/more/writing.html">Essays &amp; Reflections</a>', '')
 
     # Replace the visible More tab with a compact three-dot menu.
     text = text.replace(MORE_ANCHOR, DROPDOWN)
