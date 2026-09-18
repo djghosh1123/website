@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THANOS: Election Prediction Using Social Media Networks | Dhrubajyoti Ghosh</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="/nav-more.css" />
+  <style>
+    body{background:linear-gradient(180deg,#f8fbfd 0,#fff 540px)}
+    .story-shell{max-width:1180px;margin:0 auto;padding:0 1.25rem 3.5rem}
+    .story-hero{margin:1.35rem 0 1.1rem;padding:2.65rem;border-radius:28px;background:linear-gradient(135deg,#161d3f,#28325a 48%,#7a4a8f);color:#fff;position:relative;overflow:hidden;box-shadow:0 20px 48px rgba(16,36,62,.18)}
+    .story-hero:after{content:"THANOS";position:absolute;right:-1rem;bottom:-2.5rem;font-size:8.3rem;font-weight:900;letter-spacing:.03em;color:rgba(255,255,255,.045)}
+    .story-kicker{font-size:.74rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#e1cdea}
+    .story-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:3.25rem;line-height:1.04;margin:.35rem 0 .7rem;max-width:900px;position:relative;z-index:1}
+    .story-hero p{font-size:1.1rem;line-height:1.65;color:#edf0f7;max-width:880px;margin:0;position:relative;z-index:1}
+    .hero-question{display:inline-block;margin-top:1.2rem;padding:.75rem 1rem;border-radius:14px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.16);font-weight:800;position:relative;z-index:1}
+    .section-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:1.4rem 1.5rem;margin:1rem 0;box-shadow:0 8px 24px rgba(16,36,62,.045)}
+    .section-label{font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#7a4a8f}
+    .section-card h2{font-family:Inter,system-ui,sans-serif;margin:.2rem 0 .65rem;font-size:1.58rem}
+    .section-card p{color:#475c70;line-height:1.68;margin:.35rem 0}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .contrast{display:grid;grid-template-columns:1fr 54px 1fr;gap:.8rem;align-items:center;margin-top:1rem}
+    .source-box{border-radius:18px;padding:1.15rem;border:1px solid var(--line)}
+    .source-box.polls{background:#e8f1fa;border-color:#d3e2f1}
+    .source-box.twitter{background:#f2eaf6;border-color:#dfd0e7}
+    .source-box h3{margin:.1rem 0 .45rem;color:#10243e;font-size:1.12rem}
+    .source-box p{margin:0}
+    .plus{text-align:center;font-size:2rem;font-weight:900;color:#7a4a8f}
+    .ribbon{margin:1rem 0;border-radius:15px;background:#10243e;color:#fff;padding:1rem 1.25rem;text-align:center;font-weight:900;font-size:1.1rem}
+    .model-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+    .model{border-radius:20px;padding:1.25rem;border:1px solid var(--line);position:relative;overflow:hidden}
+    .model.thos{background:#fff4e2;border-color:#efd9b4}.model.thanos{background:#e8f5ef;border-color:#cde6da}
+    .model-tag{font-size:.7rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+    .thos .model-tag{color:#a66e1c}.thanos .model-tag{color:#2f6b4f}
+    .model h3{font-size:1.45rem;margin:.15rem 0 .55rem;color:#10243e}
+    .feature-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.75rem}
+    .feature-pill{padding:.34rem .55rem;border-radius:999px;font-size:.76rem;font-weight:850;color:#fff}
+    .gold{background:#c6842b;color:#10243e}.purple{background:#7a4a8f}.teal{background:#0c6b7d}.green{background:#2f6b4f}.rose{background:#8b3f55}.blue{background:#3867a6}
+    .network-panel{display:grid;grid-template-columns:1fr .95fr;gap:1rem;align-items:center}
+    .network-graphic{position:relative;min-height:280px;border-radius:18px;background:radial-gradient(circle at center,#f7f1fa 0,#eef4fa 55%,#fff 100%);border:1px solid #dde5ee;overflow:hidden}
+    .n{position:absolute;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;box-shadow:0 5px 14px rgba(16,36,62,.12);z-index:2}
+    .n.big{width:66px;height:66px;font-size:1.1rem}.n.a{left:44%;top:35%;background:#7a4a8f}.n.b{left:18%;top:15%;background:#0c6b7d}.n.c{right:16%;top:15%;background:#3867a6}.n.d{left:14%;bottom:17%;background:#c6842b;color:#10243e}.n.e{right:13%;bottom:18%;background:#2f6b4f}.n.f{left:45%;bottom:8%;background:#8b3f55}
+    .line{position:absolute;height:3px;background:#92a1b1;transform-origin:left center;z-index:1}
+    .line.l1{left:24%;top:29%;width:29%;transform:rotate(22deg)}.line.l2{left:51%;top:31%;width:29%;transform:rotate(-21deg)}.line.l3{left:24%;top:66%;width:28%;transform:rotate(-24deg)}.line.l4{left:52%;top:64%;width:28%;transform:rotate(23deg)}.line.l5{left:49%;top:55%;width:28%;transform:rotate(92deg)}
+    .result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1rem}
+    .result{border-radius:16px;padding:1rem;border:1px solid var(--line);background:#fbfcfe}
+    .result strong{display:block;font-size:1.45rem;color:#10243e;margin-bottom:.3rem}
+    .result span{color:#5d6d7e;line-height:1.45}
+    .spotlight{background:linear-gradient(135deg,#fff4e2,#fff);border:1px solid #efddbc;border-radius:18px;padding:1.15rem;margin-top:1rem}
+    .spotlight b{color:#10243e}
+    .robust-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.9rem}
+    .robust-box{border-radius:16px;padding:1rem}
+    .robust-box.problem{background:#faecef;border:1px solid #efd2d8}.robust-box.response{background:#e7f4ee;border:1px solid #cfe6da}
+    .robust-box h3{margin:.1rem 0 .4rem;color:#10243e}
+    .big-picture{background:linear-gradient(135deg,#10243e,#173d5a);color:#fff;border-radius:22px;padding:1.5rem;margin:1rem 0}
+    .big-picture h2{color:#fff;font-family:Inter,system-ui,sans-serif;margin:.1rem 0 .5rem}.big-picture p{color:#e6eef4;line-height:1.65;margin:.3rem 0}
+    .publication{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;background:#f8fafc;border:1px solid var(--line);border-radius:18px;padding:1.2rem 1.3rem;margin-top:1rem}
+    .publication h3{margin:.1rem 0 .35rem;color:#10243e}.publication p{margin:0;color:#5a6a7b;line-height:1.5}
+    .btn{display:inline-block;text-decoration:none;padding:.7rem .95rem;border-radius:999px;font-weight:850;background:#10243e;color:#fff;white-space:nowrap}
+    .note{font-size:.82rem;color:#687787;margin-top:.9rem}
+    @media(max-width:900px){.split,.model-grid,.network-panel,.robust-grid{grid-template-columns:1fr}.contrast{grid-template-columns:1fr}.plus{transform:rotate(90deg)}.result-grid{grid-template-columns:1fr}.publication{grid-template-columns:1fr}}
+    @media(max-width:620px){.story-shell{padding-left:1rem;padding-right:1rem}.story-hero{padding:1.8rem 1.3rem}.story-hero h1{font-size:2.2rem}}
+  </style>
+</head>
+<body>
+<nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="/index.html">Dhrubajyoti Ghosh</a><div class="site-links"><a href="/index.html">Home</a><a href="/research.html">Research</a><a href="/publications.html">Publications</a><a href="/lindt-lab.html">LINDT-C Lab</a><a href="/software.html">Software</a><a href="/teaching.html">Teaching</a><a href="/news/index.html">News</a><div class="nav-more"><button class="nav-more-trigger" type="button" aria-label="More" aria-haspopup="true">⋯</button><div class="nav-more-menu"><a href="/more/research-notes.html">Research Notes</a><a href="/more/resources.html">Tutorials &amp; Resources</a><a href="/more/poetry.html">Poetry</a><a href="/more/writing.html">Essays &amp; Reflections</a></div></div><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a></div></div></nav>
+
+<main class="story-shell">
+  <section class="story-hero">
+    <div class="story-kicker">Paper discussion · Social media analytics</div>
+    <h1>THANOS: Predicting Elections with Twitter and Polls</h1>
+    <p>Can social-media activity add useful information to traditional polling? This paper explores that question by combining opinion polls with Twitter hashtag activity and network structure.</p>
+    <div class="hero-question">The core idea: polls are informative but slower; social media is fast but noisy.</div>
+  </section>
+
+  <section class="section-card">
+    <div class="section-label">Why combine the two?</div>
+    <h2>Polling and Twitter see different parts of the campaign</h2>
+    <div class="contrast">
+      <div class="source-box polls">
+        <h3>Opinion polls</h3>
+        <p>Designed to measure voter sentiment more systematically, but they arrive as periodic snapshots rather than a continuous stream.</p>
+      </div>
+      <div class="plus">+</div>
+      <div class="source-box twitter">
+        <h3>Twitter activity</h3>
+        <p>Available in real time and rich in campaign dynamics, but noisy, selective, and not representative of the full electorate.</p>
+      </div>
+    </div>
+    <div class="ribbon">The paper combines the depth of polling with the speed of social-media signals.</div>
+  </section>
+
+  <section class="section-card">
+    <div class="section-label">Two models</div>
+    <h2>THOS and THANOS</h2>
+    <div class="model-grid">
+      <article class="model thos">
+        <div class="model-tag">Model 1</div>
+        <h3>THOS</h3>
+        <p><strong>Twitter Hashtag-based Opinion Survey.</strong> THOS uses the frequency of campaign-related hashtags over time together with polling information.</p>
+        <div class="feature-pills"><span class="feature-pill gold">Hashtag frequency</span><span class="feature-pill blue">Polls</span><span class="feature-pill purple">Time series</span></div>
+        <p style="margin-top:.8rem">In the paper, THOS is used as the simpler model and was most effective in examples with a clearer separation between the two sides.</p>
+      </article>
+      <article class="model thanos">
+        <div class="model-tag">Model 2</div>
+        <h3>THANOS</h3>
+        <p><strong>Twitter Hashtag and Network-based Opinion Survey.</strong> THANOS adds network structure to the hashtag-and-poll framework.</p>
+        <div class="feature-pills"><span class="feature-pill green">Harmonic centrality</span><span class="feature-pill teal">Retweet ratios</span><span class="feature-pill purple">Influencers</span><span class="feature-pill blue">Polls</span></div>
+        <p style="margin-top:.8rem">The network-enhanced model was developed for closer races, where hashtag counts alone may not capture enough of the campaign structure.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <div class="section-label">Why the network matters</div>
+    <h2>It is not only what people are tweeting — it is also who is driving the conversation</h2>
+    <div class="network-panel">
+      <div class="network-graphic" aria-label="Stylized retweet network">
+        <div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div><div class="line l5"></div>
+        <div class="n big a">A</div><div class="n b">B</div><div class="n c">C</div><div class="n d">D</div><div class="n e">E</div><div class="n f">F</div>
+      </div>
+      <div>
+        <p>The paper constructs directed retweet networks and derives features from influential users. In particular, it uses harmonic centrality and retweet-based quantities for leading influencers.</p>
+        <p>The motivation is simple: two campaigns can generate similar tweet counts while having very different network structure. A message repeatedly amplified by central users may represent a different campaign dynamic from the same number of isolated posts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <div class="section-label">Tested on real campaigns</div>
+    <h2>What the paper reported</h2>
+    <div class="result-grid">
+      <div class="result">
+        <strong>67.3%</strong>
+        <span>THOS prediction for “Yes” in Ireland’s 2018 36th Amendment referendum; the reported actual vote was 66.4%.</span>
+      </div>
+      <div class="result">
+        <strong>11 of 12</strong>
+        <span>THANOS correctly identified the winning candidate in 11 of the 12 closest 2018 U.S. Senate races examined in the paper.</span>
+      </div>
+      <div class="result">
+        <strong>Florida: undecided</strong>
+        <span>For the closest race in the set, decided by a reported 0.12% margin, the model returned an undecided forecast.</span>
+      </div>
+    </div>
+    <div class="spotlight"><b>Close-race example:</b> the paper reports that the network-enhanced model improved on the hashtag-only model in cases where the victory margin was small, including Arizona.</div>
+  </section>
+
+  <section class="section-card">
+    <div class="section-label">Robustness</div>
+    <h2>What happens when tweets disappear?</h2>
+    <div class="robust-grid">
+      <div class="robust-box problem">
+        <h3>The concern</h3>
+        <p>Social-media datasets are incomplete. Tweets can be deleted, accounts can disappear, and historical samples may omit users.</p>
+      </div>
+      <div class="robust-box response">
+        <h3>The sensitivity analysis</h3>
+        <p>The paper randomly removed up to 30% of tweets and reported that THANOS forecasts changed little. The authors attribute this stability to the emphasis on common hashtags, retweet structure, and highly influential nodes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="big-picture">
+    <div class="section-label" style="color:#d7b8e5">Big picture</div>
+    <h2>Social media as a supplement, not a replacement for polls</h2>
+    <p>The paper’s conclusion is not that Twitter should replace polling. Rather, it presents a hybrid forecasting framework in which traditional polls provide a structured measure of public opinion while social-media activity contributes fast-moving information about campaign attention and network dynamics.</p>
+    <p>That framing is important because Twitter users are not a representative sample of voters. The contribution is the attempt to use the platform’s dynamics as an additional predictive signal rather than treating raw tweet volume as a direct proxy for the electorate.</p>
+  </section>
+
+  <section class="section-card">
+    <div class="section-label">Published paper</div>
+    <div class="publication">
+      <div>
+        <h3>THANOS: A Predictive Model of Electoral Campaigns Using Twitter Data and Opinion Polls</h3>
+        <p>Dhrubajyoti Ghosh, William A. Boettcher, Rob Johnston, and Soumendra Lahiri · <em>Data Science in Science</em>, 2025.</p>
+      </div>
+      <a class="btn" href="https://www.tandfonline.com/doi/full/10.1080/26941899.2025.2484180">Read the paper</a>
+    </div>
+    <p class="note">This page is an accessible discussion of the published study. Numerical results and model descriptions above are reported from the paper; they are not forecasts of any current election.</p>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
+</body>
+</html>
