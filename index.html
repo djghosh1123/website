@@ -6,6 +6,15 @@
   <title>Dhrubajyoti Ghosh</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="/nav-more.css" />
+  <style>
+    .materials-access{position:relative;display:inline-flex;align-items:center;margin-left:.45rem}
+    .materials-trigger{border:0;background:transparent;color:#8592a0;font:600 .84rem/1 system-ui,sans-serif;cursor:pointer;padding:.12rem .24rem;border-radius:5px;opacity:.58}
+    .materials-trigger:hover,.materials-trigger:focus{opacity:1;color:#526273;background:rgba(255,255,255,.08);outline:none}
+    .materials-menu{display:none;position:absolute;left:0;bottom:1.55rem;min-width:185px;padding:.38rem;background:#fff;border:1px solid #d9e2e9;border-radius:10px;box-shadow:0 10px 28px rgba(16,36,62,.14);z-index:20}
+    .materials-menu.open{display:block}
+    .materials-menu a{display:block;padding:.52rem .62rem;border-radius:7px;text-decoration:none;color:#23384d;font-size:.82rem;white-space:nowrap}
+    .materials-menu a:hover{background:#f3f6f8}
+  </style>
 </head>
 <body>
 <nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="/index.html">Dhrubajyoti Ghosh</a><div class="site-links"><a href="/index.html">Home</a><a href="/research.html">Research</a><a href="/publications.html">Publications</a><a href="/lindt-lab.html">LINDT-C Lab</a><a href="/software.html">Software</a><a href="/teaching.html">Teaching</a><a href="/news/index.html">News</a><div class="nav-more"><button class="nav-more-trigger" type="button" aria-label="More" aria-haspopup="true">⋯</button><div class="nav-more-menu"><a href="/more/research-notes.html">Research Notes</a><a href="/more/resources.html">Tutorials &amp; Resources</a><a href="/more/poetry.html">Poetry</a></div></div><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a></div></div></nav>
@@ -62,6 +71,14 @@
   <h2>Contact</h2>
   <p><strong>Dhrubajyoti Ghosh</strong><br>Assistant Professor, School of Data Science and Analytics<br>Kennesaw State University<br><a href="mailto:dghosh3@kennesaw.edu">dghosh3@kennesaw.edu</a></p>
 </main>
-<footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
+<footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh <span class="materials-access"><button class="materials-trigger" id="materials-trigger" type="button" aria-label="Additional documents" aria-expanded="false">@</button><span class="materials-menu" id="materials-menu"><a href="/materials/research-statement.html">Research Statement</a><a href="/materials/teaching-statement.html">Teaching Statement</a></span></span></span><span>Assistant Professor, Kennesaw State University</span></div></footer>
+<script>
+(function(){
+  const b=document.getElementById('materials-trigger'),m=document.getElementById('materials-menu');
+  if(!b||!m)return;
+  b.addEventListener('click',function(e){e.stopPropagation();const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});
+  document.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');});
+})();
+</script>
 </body>
 </html>
