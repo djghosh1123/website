@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow,noarchive"/>
+<title>Research Statement | Dhrubajyoti Ghosh</title>
+<link rel="stylesheet" href="/styles.css"/>
+<link rel="stylesheet" href="/nav-more.css"/>
+<style>
+.statement-shell{max-width:920px;margin:0 auto;padding:2.2rem 1.3rem 4rem}
+.statement-head{padding:2rem 2.15rem;border-radius:22px;background:linear-gradient(135deg,#f5fafc,#f4f0f8 65%,#fff7e9);border:1px solid var(--line);margin-bottom:1.3rem}
+.statement-head .eyebrow{font-size:.72rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:#6d7884}
+.statement-head h1{font-family:Georgia,serif;font-size:2.7rem;margin:.25rem 0 .35rem;color:#10243e}
+.statement-head p{margin:.2rem 0;color:#617183}
+.statement-body{background:#fff;border:1px solid var(--line);border-radius:20px;padding:2rem 2.2rem;box-shadow:0 8px 24px rgba(16,36,62,.04)}
+.statement-body h2{font-size:1.45rem;color:#10243e;margin:1.7rem 0 .55rem}
+.statement-body h2:first-child{margin-top:0}
+.statement-body h3{font-size:1.08rem;color:#0c6b7d;margin:1.15rem 0 .35rem}
+.statement-body p{line-height:1.72;color:#3f5367;margin:.65rem 0}
+.refs{font-size:.9rem}.refs p{margin:.45rem 0;line-height:1.5}
+.note{margin-top:1.2rem;padding:.8rem 1rem;border-radius:12px;background:#f8fafc;color:#758291;font-size:.82rem}
+@media print{.site-nav,.site-footer,.note{display:none}.statement-shell{padding:0}.statement-body,.statement-head{border:none;box-shadow:none}}
+</style>
+</head>
+<body>
+<nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="/index.html">Dhrubajyoti Ghosh</a><div class="site-links"><a href="/index.html">Home</a><a href="/research.html">Research</a><a href="/publications.html">Publications</a><a href="/lindt-lab.html">LINDT-C Lab</a><a href="/software.html">Software</a><a href="/teaching.html">Teaching</a><a href="/news/index.html">News</a><div class="nav-more"><button class="nav-more-trigger" type="button" aria-label="More">⋯</button><div class="nav-more-menu"><a href="/more/research-notes.html">Research Notes</a><a href="/more/resources.html">Tutorials &amp; Resources</a><a href="/more/poetry.html">Poetry</a></div></div><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a></div></div></nav>
+<main class="statement-shell">
+<section class="statement-head"><div class="eyebrow">Research statement</div><h1>Dhrubajyoti Ghosh</h1><p>Assistant Professor, Kennesaw State University</p></section>
+<article class="statement-body">
+<p>My research develops statistical methodology for complex dependent biomedical data, with particular emphasis on longitudinal studies, causal inference, network-structured data, and neurodegenerative disease. Across these settings, the scientific data are richer than the assumptions built into many classical procedures: outcomes may be multivariate, repeatedly measured, skewed, bounded, or missing; genetic instruments and imaging features are strongly structured; and clinically relevant effects may be distributed across many outcomes rather than concentrated in a single endpoint. My goal is to build methods that remain statistically principled in these settings while being usable in real scientific studies.</p>
+<p>Three methodological themes organize my program: (1) robust inference for multivariate longitudinal and clinical-trial data, (2) network-aware causal inference and biomarker discovery, and (3) statistical theory for complex dependence. These themes grew from my doctoral training in time-series and resampling theory, my postdoctoral work in biostatistics at Duke University, and my current independent program at Kennesaw State. They are connected by a common emphasis on nonparametric or semiparametric inference, structured high-dimensional information, and rigorous uncertainty quantification.</p>
+
+<h2>1. Robust inference for multivariate longitudinal and clinical-trial data</h2>
+<p>My first major research program concerns treatment-effect inference when several correlated outcomes are observed repeatedly over time. This setting is common in Alzheimer’s disease, Parkinson’s disease, and other chronic disorders, where cognition, function, symptoms, and imaging measures evolve jointly. Standard mixed-model and MANOVA-type procedures can perform poorly when outcomes are non-Gaussian, measured on different scales, or affected by outliers and irregular missingness.</p>
+<p>With Prof. Sheng Luo at Duke, I developed the Longitudinal Rank-Sum Test (LRST), a nonparametric framework for global treatment-effect testing with multivariate longitudinal outcomes. The two-arm foundation paper in <em>Statistics in Biopharmaceutical Research</em> provides a distribution-robust alternative to model-based approaches. A subsequent extension to multi-arm clinical trials has been published in the <em>Journal of Multivariate Analysis</em>, and I also developed power and sample-size methodology for LRST-based trial design. A related goodness-of-fit test for covariance structures in multivariate longitudinal data extends this toolkit to model assessment.</p>
+<p>My current work pushes this program in three directions. First, I am developing covariate-adjusted LRST procedures in which nuisance structure is removed through regression or modern machine-learning residualization while preserving valid rank-based inference. Second, I am extending the framework to observational longitudinal studies, where treatment or exposure assignment is nonrandom and must be handled through weighting or doubly robust ideas such as IPW, AIPW, and TMLE. Third, I am developing methods for missing and irregular longitudinal data, including subject-specific weighting under MAR and sensitivity analyses under departures toward MNAR.</p>
+<p>A complementary project develops a functional global test in a reproducing-kernel Hilbert space, allowing treatment differences to be detected across a richer class of longitudinal trajectories than those targeted by conventional mean-based tests. More broadly, I am interested in adaptive and sequential versions of these procedures so that nonparametric global inference can contribute not only to post-hoc analysis but also to the design of modern multi-endpoint trials.</p>
+
+<h2>2. Network-aware causal inference and biomarker discovery</h2>
+<p>My second research program asks how causal inference should change when exposures, instruments, or outcomes are connected by known biological structure. In imaging genetics, for example, single-nucleotide polymorphisms are correlated through linkage disequilibrium while brain regions are organized by anatomical or functional connectivity. Treating these features as unrelated can discard information and destabilize high-dimensional causal estimation.</p>
+<p>With Samhita Pal, I developed network-aware instrumental-variable regression methods that incorporate graph structure directly into selection and estimation. The IVGL/IVGL-S framework uses network penalties to borrow information across related variables while allowing invalid instruments to be selected and controlled. Current extensions consider continuous, binary, multinomial, survival, and repeated-measure outcomes, with the goal of identifying brain regions that may lie on causal pathways from genetic variation to disease progression.</p>
+<p>A closely related line concerns causal structure discovery. With Samhita Pal and Shu Yang, I developed a penalized Fast Causal Inference procedure for sparse causal graphs in the presence of latent confounding, with an application to Parkinson’s disease biomarker discovery. That work has been accepted at the <em>Annals of Applied Statistics</em> and is accompanied by an R package. With student collaborators, I have also explored the interface between causal inference and graph neural networks for Alzheimer’s disease.</p>
+<p>I am also extending this program to distribution-valued and representation-based imaging features. With Rahul Ghosal, I am developing graph-structured survival models that use regional brain-intensity distributions to predict time to Alzheimer’s disease. A related direction examines atlas-independent neuroimaging biomarkers derived from learned representations. Together, these projects motivate a broader goal: combining learned representations with explicit statistical structure so that modern imaging features remain interpretable, uncertainty-aware, and portable across cohorts and scanners.</p>
+<p>Over the next several years, I plan to connect these strands through multimodal causal learning: joint models for genetics, imaging, proteins, and digital phenotypes; network-aware Mendelian randomization with complex outcomes; and causal inference under evolving or latent network structure.</p>
+
+<h2>3. Statistical foundations for complex dependence</h2>
+<p>The theoretical foundation of my research comes from work on higher-order dependence, nonlinear time series, and resampling. During my doctoral training with Prof. Soumendra Lahiri and Prof. Tucker McElroy, I developed methodology for polyspectral means and higher-order frequency-domain inference for nonlinear processes. This work includes asymptotic theory for polyspectral-mean estimation in <em>Bernoulli</em>, polyspectral factorization in the <em>Annals of the Institute of Statistical Mathematics</em>, and quadratic prediction using auto-cumulants in <em>Sankhya A</em>. I have also developed software for polyspectral estimation and quadratic forecasting.</p>
+<p>A current project studies subsampling and convolved-bootstrap inference for polyspectral means. More broadly, this work gives me a theoretical perspective that carries directly into my biomedical methodology: I am interested in procedures that remain valid under dependence, non-Gaussianity, high dimensionality, and imperfect model specification.</p>
+
+<h2>Collaboration and research training</h2>
+<p>This program is collaborative by design. My current network includes collaborators in biostatistics, radiology, neurology, computer science, and public health at Duke, South Carolina, Texas A&amp;M, NC State, and Kennesaw State. These collaborations provide clinically meaningful questions and data, while also creating settings in which methodological ideas can be stress-tested beyond the datasets that originally motivated them.</p>
+<p>Research training is equally central to the program. I mentor undergraduate, master’s, and doctoral researchers and aim to build a research pipeline in which students progress from reproducible analysis to methodological ownership and, ultimately, independent scholarship.</p>
+
+<h2>Five-year research agenda</h2>
+<h3>Robust longitudinal inference beyond randomized trials</h3>
+<p>I will develop a general framework that links rank-based global testing with causal adjustment for observational studies. The goal is a reusable inferential framework for comparative-effectiveness studies and pragmatic trials with multivariate longitudinal outcomes.</p>
+<h3>Multimodal and network-aware causal learning</h3>
+<p>I will extend network-aware IV and causal-discovery methods to settings in which genetics, imaging, proteomics, and digital phenotypes are observed jointly, with particular attention to invalid instruments, high-dimensional weak signals, latent confounding, and disagreement between anatomical networks and data-learned representations.</p>
+<h3>Theory and computation for reliable modern inference</h3>
+<p>I will continue developing resampling and dependence-aware asymptotics for statistics involving ranks, learned nuisance functions, nonlinear dependence, and structured high-dimensional estimators. I am also interested in computational tools that make complex methodology reproducible and auditable.</p>
+<p>Open-source software will remain a first-class research output. I currently maintain or co-develop software for penalized causal discovery, network-aware IV regression, polyspectral analysis, and quadratic forecasting.</p>
+<p>The long-term goal is a research program in which statistical theory, methodological innovation, biomedical translation, and student training reinforce one another. Robust inference, causal structure, complex dependence, and translational collaboration define the research program I plan to build over the next stage of my career.</p>
+
+<div class="note">This web version intentionally omits non-public submission, review, and funding-status information.</div>
+</article>
+</main>
+<footer class="site-footer"><div class="site-footer-inner"><span>© 2026 Dhrubajyoti Ghosh</span><span>Assistant Professor, Kennesaw State University</span></div></footer>
+</body></html>
