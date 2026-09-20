@@ -22,12 +22,16 @@ for path in Path('.').rglob('*.html'):
     # Remove the retired Essays & Reflections entry from existing dropdowns.
     text = text.replace('<a href="/more/writing.html">Essays &amp; Reflections</a>', '')
 
+    # Keep internal links on the preferred canonical URL form.
+    text = text.replace('href="/index.html"', 'href="/"')
+    text = text.replace('href="/news/index.html"', 'href="/news/"')
+
     # Replace the visible More tab with a compact three-dot menu.
     text = text.replace(MORE_ANCHOR, DROPDOWN)
 
     # Also handle pages that have not yet received any More navigation.
-    old_nav = '<a href="/news/index.html">News</a><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a>'
-    new_nav = f'<a href="/news/index.html">News</a>{DROPDOWN}<a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a>'
+    old_nav = '<a href="/news/">News</a><a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a>'
+    new_nav = f'<a href="/news/">News</a>{DROPDOWN}<a href="/assets/Dhrubajyoti_Ghosh_CV.pdf">CV</a>'
     text = text.replace(old_nav, new_nav)
 
     # Load the shared dropdown styling once per page.
