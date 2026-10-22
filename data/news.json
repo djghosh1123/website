@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-16",
+  "last_updated": "2026-10-22",
   "items": [
     {
       "id": "iisa-polyspectral-2026",
@@ -10,6 +10,50 @@
       "summary": "I will present invited work on polyspectral mean estimation for general nonlinear processes at the International Indian Statistical Association conference. The work develops higher-order spectral tools for inference on nonlinear and non-Gaussian time series.",
       "source_url": "/assets/Dhrubajyoti_Ghosh_CV.pdf",
       "source_label": "CV",
+      "featured": true
+    },
+    {
+      "id": "arise-two-finalists-2026",
+      "date": "2026-10-17",
+      "date_display": "October 2026",
+      "category": "Award",
+      "title": "Two LINDT-C projects selected as ARISE 2026 finalists",
+      "summary": "Two projects involving the LINDT-C Lab were selected as finalists for the ASA Statistics and Data Science in Aging Interest Group's ARISE 2026 Webinar Series. The selections include work led with Imaan Shahid and a second project with Sheng Luo, with each finalist invited to present in the 2026 webinar series.",
+      "source_url": "",
+      "source_label": "",
+      "featured": true
+    },
+    {
+      "id": "ajur-acceptance-fake-news-2026",
+      "date": "2026-10-16",
+      "date_display": "October 2026",
+      "category": "Publication",
+      "title": "Student-led fake-news paper accepted for publication in AJUR",
+      "summary": "Our student-led work on distinguishing AI-generated and human-written fake news has been accepted for publication in the American Journal of Undergraduate Research. The project grew from undergraduate research with Samuel Jaeger, Calvin Ibenye, and Aya Vera-Jimenez.",
+      "source_url": "",
+      "source_label": "",
+      "featured": true
+    },
+    {
+      "id": "overdose-spatial-accepted-2026",
+      "date": "2026-10-15",
+      "date_display": "October 2026",
+      "category": "Publication",
+      "title": "Georgia overdose mortality study accepted in Spatial and Spatio-temporal Epidemiology",
+      "summary": "The study \"Spatiotemporal Characterization of Overdose Mortality in Georgia, USA Using Spectral and Nonlinear Interaction Analysis, 2003–2021\" has been accepted for publication in Spatial and Spatio-temporal Epidemiology. The paper combines spatial, spectral, and nonlinear interaction analysis to characterize changing overdose mortality patterns across Georgia.",
+      "source_url": "https://arxiv.org/abs/2604.00353",
+      "source_label": "arXiv",
+      "featured": true
+    },
+    {
+      "id": "hcist-spatial-health-accepted-2026",
+      "date": "2026-10-15",
+      "date_display": "October 2026",
+      "category": "Conference",
+      "title": "Spatial health analytics paper accepted as a full paper at HCist 2026",
+      "summary": "\"Temporally Resolved Spatial Health Analytics for Environmental Exposure Surveillance: PM2.5, COPD, and Stroke across U.S. Cities\" has been accepted for presentation at HCist 2026 and for inclusion in the conference proceedings as a full paper.",
+      "source_url": "",
+      "source_label": "",
       "featured": true
     },
     {
