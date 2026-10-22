@@ -129,7 +129,7 @@ def enforce_publication_status(text: str) -> str:
 
     text = re.sub(
         r'(<section class="pub-section pub-section-review">.*?<span class="pub-count">)\d+(</span>)',
-        r'\g<1>5\2',
+        r'\g<1>3\2',
         text,
         count=1,
         flags=re.DOTALL,
