@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-22",
+  "last_updated": "2026-10-26",
   "items": [
     {
       "id": "iisa-polyspectral-2026",
@@ -10,6 +10,17 @@
       "summary": "I will present invited work on polyspectral mean estimation for general nonlinear processes at the International Indian Statistical Association conference. The work develops higher-order spectral tools for inference on nonlinear and non-Gaussian time series.",
       "source_url": "/assets/Dhrubajyoti_Ghosh_CV.pdf",
       "source_label": "CV",
+      "featured": true
+    },
+    {
+      "id": "faruk-seasug-grant-2026",
+      "date": "2026-10-26",
+      "date_display": "October 2026",
+      "category": "Student research",
+      "title": "Faruk Muritala receives student grant and presents research at SEASUG 2026",
+      "summary": "Doctoral researcher Faruk Muritala attended SEASUG 2026 as a student grant recipient and presented ongoing research on smoking during pregnancy and preterm birth. He also moderated a session on building Excel reports from SAS, contributing both as a presenter and session moderator.",
+      "source_url": "",
+      "source_label": "",
       "featured": true
     },
     {
